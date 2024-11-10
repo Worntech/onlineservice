@@ -1129,6 +1129,49 @@ def tkintertemplate(request):
     }
     return render(request, 'web/tkintertemplate.html',context)
 
+# second now continue
+def chashdesktopapp(request):
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+    context={
+        "desktoptemplate":desktoptemplate
+    }
+    return render(request, 'web/chashdesktopapp.html',context)
+
+def javadesktopapp(request):
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+    context={
+        "desktoptemplate":desktoptemplate
+    }
+    return render(request, 'web/javadesktopapp.html',context)
+
+def cplusdesktopapp(request):
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+    context={
+        "desktoptemplate":desktoptemplate
+    }
+    return render(request, 'web/cplusdesktopapp.html',context)
+
+def electrondesktopapp(request):
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+    context={
+        "desktoptemplate":desktoptemplate
+    }
+    return render(request, 'web/electrondesktopapp.html',context)
+
+def swiftdesktopapp(request):
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+    context={
+        "desktoptemplate":desktoptemplate
+    }
+    return render(request, 'web/swiftdesktopapp.html',context)
+
+def rustdesktopapp(request):
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+    context={
+        "desktoptemplate":desktoptemplate
+    }
+    return render(request, 'web/rustdesktopapp.html',context)
+
 
 # @login_required(login_url='signin')
 def microsofttemplate(request):
@@ -1194,6 +1237,161 @@ def illustratortemplate(request):
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/illustratortemplate.html',context)
+
+
+
+
+
+
+
+def InDesignadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/InDesignadobe.html',context)
+def XDadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/XDadobe.html',context)
+def Lightroomadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Lightroomadobe.html',context)
+def LightroomClassicadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/LightroomClassicadobe.html',context)
+def AfterEffectsadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/AfterEffectsadobe.html',context)
+
+def Animateadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Animateadobe.html',context)
+def Dreamweaveradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Dreamweaveradobe.html',context)
+def Auditionadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Auditionadobe.html',context)
+def Bridgeadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Bridgeadobe.html',context)
+def Dimensionadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Dimensionadobe.html',context)
+
+def Frescoadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Frescoadobe.html',context)
+def CharacterAnimatoradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/CharacterAnimatoradobe.html',context)
+def MediaEncoderadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/MediaEncoderadobe.html',context)
+def Rushadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Rushadobe.html',context)
+def Sparkadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Sparkadobe.html',context)
+
+def Substance3DPainteradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Substance3DPainteradobe.html',context)
+def Substance3DDesigneradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Substance3DDesigneradobe.html',context)
+def Substance3DSampleradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Substance3DSampleradobe.html',context)
+def Substance3DStageradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Substance3DStageradobe.html',context)
+def AcrobatProDCadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/AcrobatProDCadobe.html',context)
+
+def Signadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Signadobe.html',context)
+def FrameMakeradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/FrameMakeradobe.html',context)
+def Engageadobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Engageadobe.html',context)
+def Presenteradobe(request):
+    adobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "adobetemplate":adobetemplate
+    }
+    return render(request, 'web/Presenteradobe.html',context)
 
 # FOR BOOK
 def novels(request):
@@ -9573,6 +9771,526 @@ def search_illustratortemplate(request):
         product = Adobetemplate.objects.all()
 
     return render(request, 'web/illustratortemplate.html', {'adobetemplate': product})
+
+
+##########################################
+def search_InDesignadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/InDesignadobe.html', {'adobetemplate': product})
+def search_XDadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/XDadobe.html', {'adobetemplate': product})
+def search_Lightroomadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Lightroomadobe.html', {'adobetemplate': product})
+def search_LightroomClassicadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/LightroomClassicadobe.html', {'adobetemplate': product})
+def search_AfterEffectsadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/AfterEffectsadobe.html', {'adobetemplate': product})
+def search_Animateadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Animateadobe.html', {'adobetemplate': product})
+def search_Dreamweaveradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Dreamweaveradobe.html', {'adobetemplate': product})
+def search_Auditionadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Auditionadobe.html', {'adobetemplate': product})
+def search_Bridgeadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Bridgeadobe.html', {'adobetemplate': product})
+def search_Dimensionadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Dimensionadobe.html', {'adobetemplate': product})
+def search_Frescoadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Frescoadobe.html', {'adobetemplate': product})
+def search_CharacterAnimatoradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/CharacterAnimatoradobe.html', {'adobetemplate': product})
+def search_MediaEncoderadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/MediaEncoderadobe.html', {'adobetemplate': product})
+def search_Rushadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Rushadobe.html', {'adobetemplate': product})
+def search_Sparkadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Sparkadobe.html', {'adobetemplate': product})
+def search_Substance3DPainteradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Substance3DPainteradobe.html', {'adobetemplate': product})
+def search_Substance3DDesigneradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Substance3DDesigneradobe.html', {'adobetemplate': product})
+def search_Substance3DSampleradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Substance3DSampleradobe.html', {'adobetemplate': product})
+def search_Substance3DStageradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Substance3DStageradobe.html', {'adobetemplate': product})
+def search_AcrobatProDCadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/AcrobatProDCadobe.html', {'adobetemplate': product})
+def search_Signadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Signadobe.html', {'adobetemplate': product})
+def search_FrameMakeradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/FrameMakeradobe.html', {'adobetemplate': product})
+def search_Engageadobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Engageadobe.html', {'adobetemplate': product})
+def search_Presenteradobe(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/Presenteradobe.html', {'adobetemplate': product})
+
+############################
+def search_chashdesktopapp(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/chashdesktopapp.html', {'adobetemplate': product})
+
+def search_javadesktopapp(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/javadesktopapp.html', {'adobetemplate': product})
+
+def search_cplusdesktopapp(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/cplusdesktopapp.html', {'adobetemplate': product})
+
+def search_electrondesktopapp(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/electrondesktopapp.html', {'adobetemplate': product})
+
+def search_swiftdesktopapp(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/swiftdesktopapp.html', {'adobetemplate': product})
+
+def search_rustdesktopapp(request):
+    query = request.GET.get('q')
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        product = Adobetemplate.objects.filter(queries)
+    else:
+        product = Adobetemplate.objects.all()
+
+    return render(request, 'web/rustdesktopapp.html', {'adobetemplate': product})
 
 
 

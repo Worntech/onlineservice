@@ -30,14 +30,14 @@
     <!-- Start Events Area-->
     <section class="courses section grid-page">
         <div class="container">
-            <form class="d-flex search-form" method="get" action="{% url 'search_illustratortemplate' %}">
+            <form class="d-flex search-form" method="get" action="{% url 'search_Bridgeadobe' %}">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
                 <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
             </form>
             <div class="row">
                 {% if adobetemplate %}
                 {% for i in adobetemplate %}
-                {% if i.Type == 'Adobe Illustrator' %}
+                {% if i.Type == 'Adobe Bridge' %}
                 <div class="col-lg-4 col-md-6 col-12">
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
@@ -64,7 +64,7 @@
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">Illustrator</a>
+                                <a href="javascript:void(0)">Photoshop</a>
                             </span>
                         </div>
                     </div>

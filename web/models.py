@@ -64,10 +64,10 @@ class MyUser(AbstractBaseUser):
     date_joined=models.DateTimeField(verbose_name="date joined", auto_now_add=True)
     
     last_login=models.DateTimeField(verbose_name="last login", auto_now=True)
-    is_admin=models.BooleanField(default=True)
+    is_admin=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
-    is_staff=models.BooleanField(default=True)
-    is_superuser=models.BooleanField(default=True)
+    is_staff=models.BooleanField(default=False)
+    is_superuser=models.BooleanField(default=False)
     hide_email = models.BooleanField(default=True)
     
 
@@ -880,6 +880,11 @@ class Desktoptemplate(models.Model):
 			('Pyqt', 'Pyqt'),
             ('Tkinter', 'Tkinter'),
 			('C++', 'C++'),
+            ('C#', 'C#'),
+			('Java', 'Java'),
+            ('Electron (JavaScript, HTML, CSS)', 'Electron (JavaScript, HTML, CSS)'),
+			('Swift', 'Swift'),
+            ('Rust', 'Rust'),
 			)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     Title = models.CharField(max_length=700)
@@ -922,9 +927,33 @@ class Microsofttemplate(models.Model):
     
 class Adobetemplate(models.Model):
     template = (
-            ('photoshop', 'photoshop'),
-			('primier', 'primier'),
-            ('illustrator', 'illustrator'),
+            ('Adobe Photoshop', 'Adobe Photoshop'),
+			('Adobe Primier Pro', 'Adobe Primier Pro'),
+            ('Adobe Illustrator', 'Adobe Illustrator'),
+            ('Adobe InDesign', 'Adobe InDesign'),
+			('Adobe XD', 'Adobe XD'),
+            ('Adobe Lightroom', 'Adobe Lightroom'),
+            ('Adobe Lightroom Classic', 'Adobe Lightroom Classic'),
+			('Adobe After Effects', 'Adobe After Effects'),
+            ('Adobe Animate', 'Adobe Animate'),
+            ('Adobe Dreamweaver', 'Adobe Dreamweaver'),
+			('Adobe Audition', 'Adobe Audition'),
+            ('Adobe Bridge', 'Adobe Bridge'),
+            ('Adobe Dimension', 'Adobe Dimension'),
+			('Adobe Fresco', 'Adobe Fresco'),
+            ('Adobe Character Animator', 'Adobe Character Animator'),
+            ('Adobe Media Encoder', 'Adobe Media Encoder'),
+			('Adobe Rush', 'Adobe Rush'),
+            ('Adobe Spark', 'Adobe Spark'),
+            ('Adobe Substance 3D Painter', 'Adobe Substance 3D Painter'),
+			('Adobe Substance 3D Designer', 'Adobe Substance 3D Designer'),
+            ('Adobe Substance 3D Sampler', 'Adobe Substance 3D Sampler'),
+            ('Adobe Substance 3D Stager', 'Adobe Substance 3D Stager'),
+			('Adobe Acrobat Pro DC', 'Adobe Acrobat Pro DC'),
+            ('Adobe Sign', 'Adobe Sign'),
+            ('Adobe FrameMaker', 'Adobe FrameMaker'),
+            ('Marketo Engage', 'Marketo Engage'),
+			('Adobe Presenter', 'Adobe Presenter'),
 			)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     Title = models.CharField(max_length=700)
