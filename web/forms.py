@@ -123,7 +123,7 @@ class CommentgraphicsForm(forms.ModelForm):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['Title', 'Explanation', 'Type', 'Preview_Video', 'Project', 'amount_in_USD']
+        fields = ['Title', 'Explanation', 'Type', 'Image', 'Preview_Video', 'Project', 'amount_in_USD']
         
         
 #for comment of the project
@@ -234,7 +234,7 @@ class CommentprintableForm(forms.ModelForm):
 class MusicForm(ModelForm):
     class Meta:
         model = Music
-        fields = ['Title', 'Category', 'Explanation', 'Image', 'Product', 'amount_in_USD']
+        fields = ['Title', 'Category', 'Explanation', 'Image', 'Product', 'Preview_Audio', 'amount_in_USD']
 
 class CommentmusicForm(forms.ModelForm):
     content = forms.CharField(

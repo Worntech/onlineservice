@@ -21,6 +21,35 @@
     <link rel="stylesheet" href="{% static 'web/css/tiny-slider.css' %}">
     <link rel="stylesheet" href="{% static 'web/css/glightbox.min.css' %}">
     <link rel="stylesheet" href="{% static 'web/css/main.css' %}">
+
+    <style>
+        .custom-audio-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            width: max-content;
+        }
+    
+        .play-pause-btn {
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        .play-pause-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
     
 
 </head>
@@ -36,14 +65,16 @@
                 <div class="col-lg-8 col-12">
                     <div class="single-inner">
                         <div class="post-thumbnils">
-                            {% if object.Preview_Video %}
-                            <video width="100%" controls>
-                                <source src="{{ object.Preview_Video.url }}" type="video/mp4">
-                            </video>
-                            {% else %}
                             <img src="{{object.Image.url}}" alt="#">
-                            {% endif %}
                         </div>
+                        {% if object.Preview_Audio %}
+                        <div class="custom-audio-container">
+                            <button class="play-pause-btn" onclick="togglePlayPause(this)">
+                                Play
+                            </button>
+                            <audio id="custom-audio" src="{{ object.Preview_Audio.url }}"></audio>
+                        </div>
+                        {% endif %}
 
                         <div class="post-details">
                             <div class="detail-inner">
@@ -534,6 +565,18 @@
     
         function shareOnVimeo() {
             window.open(`https://vimeo.com/share?url=${currentUrl}`, '_blank');
+        }
+    </script>
+    <script>
+        function togglePlayPause(button) {
+            const audio = document.getElementById('custom-audio');
+            if (audio.paused) {
+                audio.play();
+                button.textContent = 'Pause';
+            } else {
+                audio.pause();
+                button.textContent = 'Play';
+            }
         }
     </script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

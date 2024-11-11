@@ -51,6 +51,13 @@ from django.db.models import Q
 
 import random
 from itertools import chain
+from django.urls import reverse_lazy
+
+from django.contrib.auth.views import (
+    PasswordResetView, PasswordResetDoneView,
+    PasswordResetConfirmView, PasswordResetCompleteView
+)
+
 
 
 
@@ -150,10 +157,28 @@ def change_password(request):
             messages.success(request, 'Your password was successfully updated!')
             return redirect('signin')  # Redirect to the same page after successful password change
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'Please inseart correct information.')
     else:
         passwordchange = PasswordChangeForm(request.user)
     return render(request, 'web/change_password.html', {'passwordchange': passwordchange})
+
+# Custom Password Reset View
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'registration/password_reset_form.html'
+    success_url = reverse_lazy('password_reset_done')
+
+# Custom Password Reset Done View
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'registration/password_reset_done.html'
+
+# Custom Password Reset Confirm View
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'registration/password_reset_confirm.html'
+    success_url = reverse_lazy('password_reset_complete')
+
+# Custom Password Reset Complete View
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'registration/password_reset_complete.html'
 
 def home(request):
     image_count = Image.objects.all().count()
@@ -1237,11 +1262,6 @@ def illustratortemplate(request):
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/illustratortemplate.html',context)
-
-
-
-
-
 
 
 def InDesignadobe(request):
