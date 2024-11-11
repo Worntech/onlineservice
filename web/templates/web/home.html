@@ -361,7 +361,7 @@
                     <div class="col-12">
                         <div class="section-title">
                             <div class="section-icon wow zoomIn" data-wow-delay=".4s">
-                                <i class="lni lni-graduation"></i>
+                                {% comment %} <i class="lni lni-graduation"></i> {% endcomment %}
                             </div>
                             <h2 class="wow fadeInUp" data-wow-delay=".4s">Templates and Images</h2>
                             <p class="wow fadeInUp" data-wow-delay=".6s">Templates and images for free and premier.</p>
@@ -557,7 +557,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <div class="section-icon wow zoomIn" data-wow-delay=".4s">
-                            <i class="lni lni-graduation"></i>
+                            {% comment %} <i class="lni lni-graduation"></i> {% endcomment %}
                         </div>
                         <h2 class="wow fadeInUp" data-wow-delay=".4s">Projects</h2>
                         <p class="wow fadeInUp" data-wow-delay=".6s">We provide project various project as follows.</p>
@@ -810,7 +810,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <div class="section-icon wow zoomIn" data-wow-delay=".4s">
-                            <i class="lni lni-graduation"></i>
+                            {% comment %} <i class="lni lni-graduation"></i> {% endcomment %}
                         </div>
                         <h2 class="wow fadeInUp" data-wow-delay=".4s">Digital Product</h2>
                         <p class="wow fadeInUp" data-wow-delay=".6s">Explore other digital product</p>
@@ -1089,7 +1089,7 @@
     </section>
     <!-- End Achivement Area -->
 
-    <!-- Start Events Area-->
+    {% comment %} <!-- Start Events Area-->
     <section class="events section">
         <div class="container">
             <div class="row">
@@ -1117,8 +1117,8 @@
                         </div>
                         <div class="bottom-content">
                             <a class="speaker" href="javascript:void(0)">
-                                {% comment %} <img src="{% static 'web/images/speaker-1.jpg' %}" alt="#">
-                                <span>Devid Josh</span> {% endcomment %}
+                                <img src="{% static 'web/images/speaker-1.jpg' %}" alt="#">
+                                <span>Devid Josh</span>
                             </a>
                             Conduction Time
                             <span class="time">
@@ -1142,8 +1142,8 @@
                         </div>
                         <div class="bottom-content">
                             <a class="speaker" href="javascript:void(0)">
-                                {% comment %} <img src="{%  static 'web/images/speaker-2.jpg' %}" alt="#">
-                                <span>Alex Milan</span> {% endcomment %}
+                                <img src="{%  static 'web/images/speaker-2.jpg' %}" alt="#">
+                                <span>Alex Milan</span>
                             </a>
                             Conduction Time
                             <span class="time">
@@ -1164,8 +1164,8 @@
                         </div>
                         <div class="bottom-content">
                             <a class="speaker" href="javascript:void(0)">
-                                {% comment %} <img src="{% static 'web/images/speaker-3.jpg' %}" alt="#">
-                                <span>Jhon Deco</span> {% endcomment %}
+                               <img src="{% static 'web/images/speaker-3.jpg' %}" alt="#">
+                                <span>Jhon Deco</span>
                             </a>
                             Conduction Time
                             <span class="time">
@@ -1184,8 +1184,8 @@
                         </div>
                         <div class="bottom-content">
                             <a class="speaker" href="javascript:void(0)">
-                                {% comment %} <img src="{% static 'web/images/speaker-4.jpg' %}" alt="#">
-                                <span>Julia zink</span> {% endcomment %}
+                                <img src="{% static 'web/images/speaker-4.jpg' %}" alt="#">
+                                <span>Julia zink</span>
                             </a>
                             Conduction Time
                             <span class="time">
@@ -1199,7 +1199,7 @@
             </div>
         </div>
     </section>
-    <!-- End Events Area-->
+    <!-- End Events Area--> {% endcomment %}
 
     <!-- Start Teachers -->
     <section id="teachers" class="teachers section">
@@ -1512,7 +1512,17 @@
     </section>
     <!-- /End Call To Action Area -->
 
-    <!-- Start Latest News Area -->
+
+
+
+
+
+
+
+
+
+
+    {% comment %} <!-- Start Latest News Area -->
     <div class="latest-news-area section">
         <div class="container">
             <div class="row">
@@ -1620,7 +1630,7 @@
             </div>
         </div>
     </div>
-    <!-- End Latest News Area -->
+    <!-- End Latest News Area --> {% endcomment %}
 
     <!-- Start Footer Area -->
 
