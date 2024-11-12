@@ -60,7 +60,6 @@ from django.contrib.auth.views import (
 
 
 
-
 # Create your views here.
 # @login_required(login_url='signin')
 def admin(request):
@@ -92,7 +91,7 @@ def signup(request):
                 subject = "WORNTECH ONLINE SERVICES"
                 message = f"Hellow {first_name} {last_name} You have created account in Worntech, welcome and enjoy the service of selling and buyying digital product, if there is any problem contact us. Your user name is: {email} and your password is: {password}, welcome and enjoy the service with worntech online services"
                 #from_email = settings.EMAIL_HOST_USER
-                from_email = 'pngiliule01@gmail.com'
+                from_email = 'worntechservices@gmail.com'
                 recipient_list = [email]
                 send_mail(subject, message, from_email, recipient_list, fail_silently=True)
                 return redirect('signupsucces')
@@ -146,9 +145,9 @@ def change_password(request):
             
             
             subject = "WORNTECH ONLINE SERVICES"
-            message = f"Hellow {request.user.first_name} {request.user.last_name} You have changed your password in worntech online services, if not you please contact us through whatsapp +255 624 089 128"
+            message = f"Hellow {request.user.first_name} {request.user.last_name} You have changed your password in worntech online services, if not you please contact us through whatsapp +255 710 891 288"
             #from_email = settings.EMAIL_HOST_USER
-            from_email = 'pngiliule01@gmail.com'
+            from_email = 'worntechservices@gmail.com'
             recipient_list = [user.request.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=True)
                 
@@ -253,9 +252,9 @@ def contactpost(request):
             contactpost.save()
 
             subject = "WORNTECH ONLINE SERVICES"
-            message = f"Hellow {request.user.first_name} {request.user.last_name} Thanks for contacting us, worntech online service is working for your message, opinion and question, get read we are here for your, for moer infomation contact via whatsapp +255 624 089 128"
+            message = f"Hellow {request.user.first_name} {request.user.last_name} Thanks for contacting us, worntech online service is working for your message, opinion and question, get read we are here for your, for moer infomation contact via whatsapp +255 710 891 288"
             #from_email = settings.EMAIL_HOST_USER
-            from_email = 'pngiliule01@gmail.com'
+            from_email = 'worntechservices@gmail.com'
             recipient_list = [request.user.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=True)
             messages.success(request, 'Message sent successfully.')
@@ -281,7 +280,7 @@ def subscribe(request):
                 subject = "WORNTECH ONLINE SERVICES"
                 message = f"Thanks for subscribing in worntech online services, sell and buy digital product online with worntech online service, welcome and enjoy the services"
                 #from_email = settings.EMAIL_HOST_USER
-                from_email = 'pngiliule01@gmail.com'
+                from_email = 'worntechservices@gmail.com'
                 recipient_list = [email]
                 send_mail(subject, message, from_email, recipient_list, fail_silently=True)
                 
@@ -8386,9 +8385,9 @@ def withdraw(request):
                 email = request.user.email
                 
                 subject = "WORNTECH ONLINE SERVICES"
-                message = f"Hellow {fname} {lname} You have withdrawed ${withdraw_instance.Amount_in_USD} from Worntech, you money will be confirmed soon, contact +255 624 089 128"
+                message = f"Hellow {fname} {lname} You have withdrawed ${withdraw_instance.Amount_in_USD} from Worntech, you money will be confirmed soon, contact +255 710 891 288"
                 #from_email = settings.EMAIL_HOST_USER
-                from_email = 'pngiliule01@gmail.com'
+                from_email = 'worntechservices@gmail.com'
                 recipient_list = [email]
                 send_mail(subject, message, from_email, recipient_list, fail_silently=True)
 

@@ -135,8 +135,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'pngiliule01@gmail.com'
-EMAIL_HOST_PASSWORD = 'dmxziahbxmlhxkzq'
+EMAIL_HOST_USER = 'worntechservices@gmail.com'
+EMAIL_HOST_PASSWORD = 'gqnb mwhg mudx lrto'
 EMAIL_USE_TLS = True
 
 # PESAPAL INTERGRATION
@@ -150,8 +150,8 @@ PESAPAL_OAUTH_SIGNATURE_METHOD = "SignatureMethod_HMAC_SHA1"
 PESAPAL_TRANSACTION_FAILED_REDIRECT_URL = ""
 PESAPAL_ITEM_DESCRIPTION = True
 PESAPAL_TRANSACTION_MODEL = "django_pesapal.Transaction"
-PESAPAL_CONSUMER_KEY = "XUuDdx+FvdDMgBk/BKvA+9AFjq0xMCLM"
-PESAPAL_CONSUMER_SECRET = "K+08ggQ+QEXbxrjEWzffWtzofiI="
+PESAPAL_CONSUMER_KEY = "Z1j+oVmK9LCODN/XrtckXf/lrBFgolr1"
+PESAPAL_CONSUMER_SECRET = "ucOH6xbNhRfpXLPcYgHGvl5OX2Y="
 # Override pesapal keys
 
 # try:
