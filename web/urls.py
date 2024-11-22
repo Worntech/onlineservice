@@ -742,20 +742,20 @@ urlpatterns = [
     # FOR PAYMENT
     path('pesapal/transaction/completed/', views.payment_completed, name='payment_completed'),
     
-    path('paymentwebsitetemplate/<int:id>/', PaymentViewWebsitetemplate.as_view(), name='paymentwebsitetemplate'),
-    path('paymentmobiletemplate/<int:id>/', PaymentViewMobiletemplate.as_view(), name='paymentmobiletemplate'),
-    path('paymentdesktoptemplate/<int:id>/', PaymentViewDesktoptemplate.as_view(), name='paymentdesktoptemplate'),
-    path('paymentmicrosofttemplate/<int:id>/', PaymentViewMicrosofttemplate.as_view(), name='paymentmicrosofttemplate'),
-    path('paymentadobetemplate/<int:id>/', PaymentViewAdobetemplate.as_view(), name='paymentadobetemplate'),
+    path('paymentwebsitetemplate/<int:product_id>/', PaymentViewWebsitetemplate.as_view(), name='paymentwebsitetemplate'),
+    path('paymentmobiletemplate/<int:product_id>/', PaymentViewMobiletemplate.as_view(), name='paymentmobiletemplate'),
+    path('paymentdesktoptemplate/<int:product_id>/', PaymentViewDesktoptemplate.as_view(), name='paymentdesktoptemplate'),
+    path('paymentmicrosofttemplate/<int:product_id>/', PaymentViewMicrosofttemplate.as_view(), name='paymentmicrosofttemplate'),
+    path('paymentadobetemplate/<int:product_id>/', PaymentViewAdobetemplate.as_view(), name='paymentadobetemplate'),
     
     path('paymentwebsite/<int:course_id>/', PaymentViewWebsite.as_view(), name='paymentwebsite'),
-    path('paymentmobile/<int:course_id>>/', PaymentViewMobile.as_view(), name='paymentmobile'),
+    path('paymentmobile/<int:course_id>/', PaymentViewMobile.as_view(), name='paymentmobile'),
     path('paymentdesktop/<int:course_id>/', PaymentViewDesktop.as_view(), name='paymentdesktop'),
     path('paymentembeded/<int:course_id>/', PaymentViewEmbeded.as_view(), name='paymentembeded'),
     path('paymentgraphics/<int:course_id>/', PaymentViewGraphics.as_view(), name='paymentgraphics'),
     
-    path('paymentproject/<int:project_id>/', PaymentViewProject.as_view(), name='paymentproject'),
-    path('paymentimage/<int:image_id>/', PaymentViewImage.as_view(), name='paymentimage'),
+    path('paymentproject/<int:product_id>/', PaymentViewProject.as_view(), name='paymentproject'),
+    path('paymentimage/<int:product_id>/', PaymentViewImage.as_view(), name='paymentimage'),
     
     
     path('paymentbook/<int:product_id>/', PaymentViewBook.as_view(), name='paymentbook'),

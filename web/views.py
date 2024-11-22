@@ -4289,7 +4289,7 @@ class viewproject(DetailView):
                 
                 # Redirect to the paymentproject URL with required parameters
                 return redirect(reverse('paymentproject', kwargs={
-                    'project_id': self.object.id,
+                    'product_id': self.object.id,
                 }))
         return self.get(request, *args, **kwargs)
 
@@ -5177,7 +5177,7 @@ class viewimage(DetailView):
                 
                 # Redirect to the paymentproject URL with required parameters
                 return redirect(reverse('paymentimage', kwargs={
-                    'image_id': self.object.id,
+                    'product_id': self.object.id,
                 }))
         return self.get(request, *args, **kwargs)
 
@@ -6004,8 +6004,8 @@ def updateadobetemplate(request, id):
 class PaymentViewWebsitetemplate(LoginRequiredMixin, View, PaymentRequestMixin):
     template_name = "web/payment.html"
 
-    def get(self, request, id):
-        template = get_object_or_404(Websitetemplate, id=id)
+    def get(self, request, product_id):
+        template = get_object_or_404(Websitetemplate, id=product_id)
         payment = Payment.objects.create(
             user=request.user,
             template=template,
@@ -6027,8 +6027,8 @@ class PaymentViewWebsitetemplate(LoginRequiredMixin, View, PaymentRequestMixin):
 class PaymentViewMobiletemplate(LoginRequiredMixin, View, PaymentRequestMixin):
     template_name = "web/payment.html"
 
-    def get(self, request, id):
-        mobiletemplate = get_object_or_404(Mobiletemplate, id=id)
+    def get(self, request, product_id):
+        mobiletemplate = get_object_or_404(Mobiletemplate, id=product_id)
         mobiletemplatepayment = PaymentMobiletemplate.objects.create(
             user=request.user,
             mobiletemplate=mobiletemplate,
@@ -6050,8 +6050,8 @@ class PaymentViewMobiletemplate(LoginRequiredMixin, View, PaymentRequestMixin):
 class PaymentViewDesktoptemplate(LoginRequiredMixin, View, PaymentRequestMixin):
     template_name = "web/payment.html"
 
-    def get(self, request, id):
-        desktoptemplate = get_object_or_404(Desktoptemplate, id=id)
+    def get(self, request, product_id):
+        desktoptemplate = get_object_or_404(Desktoptemplate, id=product_id)
         desktoptemplatepayment = PaymentDesktoptemplate.objects.create(
             user=request.user,
             desktoptemplate=desktoptemplate,
@@ -6073,8 +6073,8 @@ class PaymentViewDesktoptemplate(LoginRequiredMixin, View, PaymentRequestMixin):
 class PaymentViewMicrosofttemplate(LoginRequiredMixin, View, PaymentRequestMixin):
     template_name = "web/payment.html"
 
-    def get(self, request, id):
-        microsofttemplate = get_object_or_404(Microsofttemplate, id=id)
+    def get(self, request, product_id):
+        microsofttemplate = get_object_or_404(Microsofttemplate, id=product_id)
         microsofttemplatepayment = PaymentMicrosofttemplate.objects.create(
             user=request.user,
             microsofttemplate=microsofttemplate,
@@ -6096,8 +6096,8 @@ class PaymentViewMicrosofttemplate(LoginRequiredMixin, View, PaymentRequestMixin
 class PaymentViewAdobetemplate(LoginRequiredMixin, View, PaymentRequestMixin):
     template_name = "web/payment.html"
 
-    def get(self, request, id):
-        adobetemplate = get_object_or_404(Adobetemplate, id=id)
+    def get(self, request, product_id):
+        adobetemplate = get_object_or_404(Adobetemplate, id=product_id)
         adobetemplatepayment = PaymentAdobetemplate.objects.create(
             user=request.user,
             adobetemplate=adobetemplate,
@@ -6235,7 +6235,7 @@ class PaymentViewDesktop(LoginRequiredMixin, View, PaymentRequestMixin):
 
 class PaymentViewEmbeded(LoginRequiredMixin, View, PaymentRequestMixin):
     """
-    Make payment view 
+    Make payment view
     """
     
     template_name = "web/payment.html"
@@ -6316,18 +6316,18 @@ class PaymentViewProject(LoginRequiredMixin, View, PaymentRequestMixin):
     
     template_name = "web/payment.html"
     
-    def get(self, request, project_id):
+    def get(self, request, product_id):
         unique_code = request.session.get('unique_code')
         Title = request.session.get('Title')
         amount = Decimal(request.session.get('amount_in_USD', '0.00'))
         
         context = {
-            'project_id': project_id,
+            'product_id': product_id,
         }
 
         # Store the data in the session
         request.session['unique_code'] = unique_code
-        request.session['project_id'] = project_id
+        request.session['product_id'] = product_id
         request.session['amount'] = float(amount)
         request.session['payment_type'] = "project"
 
@@ -6335,7 +6335,7 @@ class PaymentViewProject(LoginRequiredMixin, View, PaymentRequestMixin):
         order_info = {
             "amount": amount * 2685,
             "description": f"Payment for {Title}",
-            "reference": project_id,  # Use payment ID as reference
+            "reference": product_id,  # Use payment ID as reference
             "email": request.user.email,  # Use user's email for payment
         }
 
@@ -6644,18 +6644,18 @@ class PaymentViewImage(LoginRequiredMixin, View, PaymentRequestMixin):
     
     template_name = "web/payment.html"
     
-    def get(self, request, image_id):
+    def get(self, request, product_id):
         unique_code = request.session.get('unique_code')
         Title = request.session.get('Title')
         amount = Decimal(request.session.get('amount_in_USD', '0.00'))
         
         context = {
-            'image_id': image_id,
+            'product_id': product_id,
         }
 
         # Store the data in the session
         request.session['unique_code'] = unique_code
-        request.session['image_id'] = image_id
+        request.session['product_id'] = product_id
         request.session['amount'] = float(amount)
         request.session['payment_type'] = "image"
 
@@ -6663,7 +6663,7 @@ class PaymentViewImage(LoginRequiredMixin, View, PaymentRequestMixin):
         order_info = {
             "amount": amount * 2685,
             "description": f"Payment for {Title}",
-            "reference": image_id,  # Use payment ID as reference
+            "reference": product_id,  # Use payment ID as reference
             "email": request.user.email,  # Use user's email for payment
         }
 
@@ -6939,12 +6939,12 @@ def handle_project_payment(request, transaction_id, unique_code):
     amount = request.session.get('amount')
     request.session['amount'] = amount
     projectpayment = PaymentProject.objects.filter(user=request.user).last()
-    project_id = request.session.get('project_id')
+    product_id = request.session.get('product_id')
     if projectpayment:
         projectpayment = get_object_or_404(PaymentProject, unique_code=unique_code, user=request.user)
         update_projectpayment_status(projectpayment, transaction_id)
-        process_project_purchase(request, project_id)
-        return redirect(reverse('viewproject', args=[project_id]))
+        process_project_purchase(request, product_id)
+        return redirect(reverse('viewproject', args=[product_id]))
     return None
 
 # HANDLE PAYMENT FOR DIGITAL PRODUCT
@@ -7058,12 +7058,12 @@ def handle_image_payment(request, transaction_id, unique_code):
     amount = request.session.get('amount')
     request.session['amount'] = amount
     imagepayment = PaymentImage.objects.filter(user=request.user).last()
-    image_id = request.session.get('image_id')
+    product_id = request.session.get('product_id')
     if imagepayment:
         imagepayment = get_object_or_404(PaymentImage, unique_code=unique_code, user=request.user)
         update_imagepayment_status(imagepayment, transaction_id)
-        process_image_purchase(request, image_id)
-        return redirect(reverse('viewimage', args=[image_id]))
+        process_image_purchase(request, product_id)
+        return redirect(reverse('viewimage', args=[product_id]))
     return None
 
 # PAYMENT COMPLETION
@@ -7194,9 +7194,9 @@ class PurchasedView(ListView):
 
 
 @transaction.atomic
-def process_websitetemplate_purchase(request, template_id):
+def process_websitetemplate_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Websitetemplate.objects.get(id=template_id)
+    template = Websitetemplate.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7204,13 +7204,127 @@ def process_websitetemplate_purchase(request, template_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewwebsitetemplate', args=[template_id]))
+        return redirect(reverse('viewwebsitetemplate', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewwebsitetemplate', args=[template_id]))
+        return redirect(reverse('viewwebsitetemplate', args=[product_id]))
+
+    # Check if the seller has a Myamount record
+    my_amount_record = Myamount.objects.filter(user=seller).first()
+    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
+    
+    if not my_amount_record:
+        # If the record does not exist, create it
+        my_amount_record = Myamount.objects.create(
+            user=seller,
+            Total_amount=amount,
+            My_amount=Decimal(0.8) * amount,
+            Reducted_amount=Decimal(0.2) * amount,
+            Withdrawed_amount=Decimal('0.00')
+        )
+        if not masteramount:
+            # If the record does not exist, create it
+            masteramount = MasterAmount.objects.create(
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
+            unique_code = 'welcomemasterofus',
+        )
+        else:
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
+            my_amount_record.save()
+    else:
+        # If the record exists, update it
+        my_amount_record.Total_amount += amount
+        my_amount_record.My_amount += Decimal(0.8) * amount
+        my_amount_record.Reducted_amount=Decimal(0.2) * amount
+        my_amount_record.save()
+        
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
+        my_amount_record.save()
+
+    # Clear the session data if necessary
+    request.session.pop('amount', None)
+    
+@transaction.atomic
+def process_mobiletemplate_purchase(request, product_id):
+    user = request.user  # The user making the purchase (buyer)
+    template = Mobiletemplate.objects.get(id=product_id)
+    seller = template.user  # The user who owns the template (seller)
+    
+    # Retrieve the amount from session and ensure it's a Decimal
+    amount = request.session.get('amount')
+    
+    if amount is None:
+        # Handle case where amount is missing
+        return redirect(reverse('viewmobiletemplate', args=[product_id]))
+
+    try:
+        amount = Decimal(amount)
+    except (ValueError, TypeError):
+        # Handle case where amount cannot be converted to Decimal
+        return redirect(reverse('viewmobiletemplate', args=[product_id]))
+
+    # Check if the seller has a Myamount record
+    my_amount_record = Myamount.objects.filter(user=seller).first()
+    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
+    
+    if not my_amount_record:
+        # If the record does not exist, create it
+        my_amount_record = Myamount.objects.create(
+            user=seller,
+            Total_amount=amount,
+            My_amount=Decimal(0.8) * amount,
+            Reducted_amount=Decimal(0.2) * amount,
+            Withdrawed_amount=Decimal('0.00')
+        )
+        if not masteramount:
+            # If the record does not exist, create it
+            masteramount = MasterAmount.objects.create(
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
+            unique_code = 'welcomemasterofus',
+        )
+        else:
+            masteramount.My_amount += Decimal(0.165) * amount
+            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            my_amount_record.save()
+    else:
+        # If the record exists, update it
+        my_amount_record.Total_amount += amount
+        my_amount_record.My_amount += Decimal(0.8) * amount
+        my_amount_record.Reducted_amount=Decimal(0.2) * amount
+        my_amount_record.save()
+        
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
+        my_amount_record.save()
+
+    # Clear the session data if necessary
+    request.session.pop('amount', None)
+    
+@transaction.atomic
+def process_desktoptemplate_purchase(request, product_id):
+    user = request.user  # The user making the purchase (buyer)
+    template = Desktoptemplate.objects.get(id=product_id)
+    seller = template.user  # The user who owns the template (seller)
+    
+    # Retrieve the amount from session and ensure it's a Decimal
+    amount = request.session.get('amount')
+    
+    if amount is None:
+        # Handle case where amount is missing
+        return redirect(reverse('viewdesktoptemplate', args=[product_id]))
+
+    try:
+        amount = Decimal(amount)
+    except (ValueError, TypeError):
+        # Handle case where amount cannot be converted to Decimal
+        return redirect(reverse('viewdesktoptemplate', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7243,17 +7357,17 @@ def process_websitetemplate_purchase(request, template_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_mobiletemplate_purchase(request, mobiletemplate_id):
+def process_microsofttemplate_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Mobiletemplate.objects.get(id=mobiletemplate_id)
+    template = Microsofttemplate.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7261,13 +7375,13 @@ def process_mobiletemplate_purchase(request, mobiletemplate_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewmobiletemplate', args=[mobiletemplate_id]))
+        return redirect(reverse('viewmicrosofttemplate', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewmobiletemplate', args=[mobiletemplate_id]))
+        return redirect(reverse('viewmicrosofttemplate', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7285,8 +7399,8 @@ def process_mobiletemplate_purchase(request, mobiletemplate_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7300,17 +7414,17 @@ def process_mobiletemplate_purchase(request, mobiletemplate_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_desktoptemplate_purchase(request, desktoptemplate_id):
+def process_adobetemplate_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Desktoptemplate.objects.get(id=desktoptemplate_id)
+    template = Adobetemplate.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7318,13 +7432,13 @@ def process_desktoptemplate_purchase(request, desktoptemplate_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewdesktoptemplate', args=[desktoptemplate_id]))
+        return redirect(reverse('viewadobetemplate', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewdesktoptemplate', args=[desktoptemplate_id]))
+        return redirect(reverse('viewadobetemplate', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7342,8 +7456,8 @@ def process_desktoptemplate_purchase(request, desktoptemplate_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.03) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7357,122 +7471,8 @@ def process_desktoptemplate_purchase(request, desktoptemplate_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
-        my_amount_record.save()
-
-    # Clear the session data if necessary
-    request.session.pop('amount', None)
-    
-@transaction.atomic
-def process_microsofttemplate_purchase(request, microsofttemplate_id):
-    user = request.user  # The user making the purchase (buyer)
-    template = Microsofttemplate.objects.get(id=microsofttemplate_id)
-    seller = template.user  # The user who owns the template (seller)
-    
-    # Retrieve the amount from session and ensure it's a Decimal
-    amount = request.session.get('amount')
-    
-    if amount is None:
-        # Handle case where amount is missing
-        return redirect(reverse('viewmicrosofttemplate', args=[microsofttemplate_id]))
-
-    try:
-        amount = Decimal(amount)
-    except (ValueError, TypeError):
-        # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewmicrosofttemplate', args=[microsofttemplate_id]))
-
-    # Check if the seller has a Myamount record
-    my_amount_record = Myamount.objects.filter(user=seller).first()
-    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
-    
-    if not my_amount_record:
-        # If the record does not exist, create it
-        my_amount_record = Myamount.objects.create(
-            user=seller,
-            Total_amount=amount,
-            My_amount=Decimal(0.8) * amount,
-            Reducted_amount=Decimal(0.2) * amount,
-            Withdrawed_amount=Decimal('0.00')
-        )
-        if not masteramount:
-            # If the record does not exist, create it
-            masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
-            unique_code = 'welcomemasterofus',
-        )
-        else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
-            my_amount_record.save()
-    else:
-        # If the record exists, update it
-        my_amount_record.Total_amount += amount
-        my_amount_record.My_amount += Decimal(0.8) * amount
-        my_amount_record.Reducted_amount=Decimal(0.2) * amount
-        my_amount_record.save()
-        
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
-        my_amount_record.save()
-
-    # Clear the session data if necessary
-    request.session.pop('amount', None)
-    
-@transaction.atomic
-def process_adobetemplate_purchase(request, adobetemplate_id):
-    user = request.user  # The user making the purchase (buyer)
-    template = Adobetemplate.objects.get(id=adobetemplate_id)
-    seller = template.user  # The user who owns the template (seller)
-    
-    # Retrieve the amount from session and ensure it's a Decimal
-    amount = request.session.get('amount')
-    
-    if amount is None:
-        # Handle case where amount is missing
-        return redirect(reverse('viewadobetemplate', args=[adobetemplate_id]))
-
-    try:
-        amount = Decimal(amount)
-    except (ValueError, TypeError):
-        # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewadobetemplate', args=[adobetemplate_id]))
-
-    # Check if the seller has a Myamount record
-    my_amount_record = Myamount.objects.filter(user=seller).first()
-    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
-    
-    if not my_amount_record:
-        # If the record does not exist, create it
-        my_amount_record = Myamount.objects.create(
-            user=seller,
-            Total_amount=amount,
-            My_amount=Decimal(0.8) * amount,
-            Reducted_amount=Decimal(0.2) * amount,
-            Withdrawed_amount=Decimal('0.00')
-        )
-        if not masteramount:
-            # If the record does not exist, create it
-            masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
-            unique_code = 'welcomemasterofus',
-        )
-        else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
-            my_amount_record.save()
-    else:
-        # If the record exists, update it
-        my_amount_record.Total_amount += amount
-        my_amount_record.My_amount += Decimal(0.8) * amount
-        my_amount_record.Reducted_amount=Decimal(0.2) * amount
-        my_amount_record.save()
-        
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -7513,8 +7513,8 @@ def process_website_purchase(request, course_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7528,8 +7528,8 @@ def process_website_purchase(request, course_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -7570,8 +7570,8 @@ def process_mobile_purchase(request, course_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7585,8 +7585,8 @@ def process_mobile_purchase(request, course_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -7627,8 +7627,8 @@ def process_desktop_purchase(request, course_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7642,8 +7642,8 @@ def process_desktop_purchase(request, course_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -7684,8 +7684,8 @@ def process_embeded_purchase(request, course_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7699,8 +7699,8 @@ def process_embeded_purchase(request, course_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -7741,8 +7741,8 @@ def process_graphics_purchase(request, course_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7756,17 +7756,17 @@ def process_graphics_purchase(request, course_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_project_purchase(request, project_id):
+def process_project_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Project.objects.get(id=project_id)
+    template = Project.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7774,13 +7774,13 @@ def process_project_purchase(request, project_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewproject', args=[project_id]))
+        return redirect(reverse('viewproject', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewproject', args=[project_id]))
+        return redirect(reverse('viewproject', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7798,8 +7798,8 @@ def process_project_purchase(request, project_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7813,8 +7813,8 @@ def process_project_purchase(request, project_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -7822,9 +7822,9 @@ def process_project_purchase(request, project_id):
 
 # PROCESS DIGITAL PRODUCT PURCHASE
 @transaction.atomic
-def process_book_purchase(request, project_id):
+def process_book_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Book.objects.get(id=project_id)
+    template = Book.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7832,13 +7832,13 @@ def process_book_purchase(request, project_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewbook', args=[project_id]))
+        return redirect(reverse('viewbook', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewbook', args=[project_id]))
+        return redirect(reverse('viewbook', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7856,8 +7856,8 @@ def process_book_purchase(request, project_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7871,17 +7871,17 @@ def process_book_purchase(request, project_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_printable_purchase(request, project_id):
+def process_printable_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Printable.objects.get(id=project_id)
+    template = Printable.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7889,13 +7889,13 @@ def process_printable_purchase(request, project_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewprintable', args=[project_id]))
+        return redirect(reverse('viewprintable', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewprintable', args=[project_id]))
+        return redirect(reverse('viewprintable', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7913,8 +7913,8 @@ def process_printable_purchase(request, project_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7928,17 +7928,17 @@ def process_printable_purchase(request, project_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_music_purchase(request, project_id):
+def process_music_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Music.objects.get(id=project_id)
+    template = Music.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7946,13 +7946,13 @@ def process_music_purchase(request, project_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewmusic', args=[project_id]))
+        return redirect(reverse('viewmusic', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewmusic', args=[project_id]))
+        return redirect(reverse('viewmusic', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7970,8 +7970,8 @@ def process_music_purchase(request, project_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -7985,17 +7985,17 @@ def process_music_purchase(request, project_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_multimedia_purchase(request, project_id):
+def process_multimedia_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Multimedia.objects.get(id=project_id)
+    template = Multimedia.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -8003,13 +8003,13 @@ def process_multimedia_purchase(request, project_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewmultimedia', args=[project_id]))
+        return redirect(reverse('viewmultimedia', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewmultimedia', args=[project_id]))
+        return redirect(reverse('viewmultimedia', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -8027,8 +8027,8 @@ def process_multimedia_purchase(request, project_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -8042,17 +8042,17 @@ def process_multimedia_purchase(request, project_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
     
 @transaction.atomic
-def process_digitalArt_purchase(request, project_id):
+def process_digitalArt_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = DigitalArt.objects.get(id=project_id)
+    template = DigitalArt.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -8060,13 +8060,13 @@ def process_digitalArt_purchase(request, project_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewdigitalArt', args=[project_id]))
+        return redirect(reverse('viewdigitalArt', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewdigitalArt', args=[project_id]))
+        return redirect(reverse('viewdigitalArt', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -8084,8 +8084,8 @@ def process_digitalArt_purchase(request, project_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -8099,180 +8099,8 @@ def process_digitalArt_purchase(request, project_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
-        my_amount_record.save()
-
-    # Clear the session data if necessary
-    request.session.pop('amount', None)
-    
-    
-@transaction.atomic
-def process_CAD_purchase(request, project_id):
-    user = request.user  # The user making the purchase (buyer)
-    template = CAD.objects.get(id=project_id)
-    seller = template.user  # The user who owns the template (seller)
-    
-    # Retrieve the amount from session and ensure it's a Decimal
-    amount = request.session.get('amount')
-    
-    if amount is None:
-        # Handle case where amount is missing
-        return redirect(reverse('viewCAD', args=[project_id]))
-
-    try:
-        amount = Decimal(amount)
-    except (ValueError, TypeError):
-        # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewCAD', args=[project_id]))
-
-    # Check if the seller has a Myamount record
-    my_amount_record = Myamount.objects.filter(user=seller).first()
-    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
-    
-    if not my_amount_record:
-        # If the record does not exist, create it
-        my_amount_record = Myamount.objects.create(
-            user=seller,
-            Total_amount=amount,
-            My_amount=Decimal(0.8) * amount,
-            Reducted_amount=Decimal(0.2) * amount,
-            Withdrawed_amount=Decimal('0.00')
-        )
-        if not masteramount:
-            # If the record does not exist, create it
-            masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
-            unique_code = 'welcomemasterofus',
-        )
-        else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
-            my_amount_record.save()
-    else:
-        # If the record exists, update it
-        my_amount_record.Total_amount += amount
-        my_amount_record.My_amount += Decimal(0.8) * amount
-        my_amount_record.Reducted_amount=Decimal(0.2) * amount
-        my_amount_record.save()
-        
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
-        my_amount_record.save()
-
-    # Clear the session data if necessary
-    request.session.pop('amount', None)
-    
-@transaction.atomic
-def process_software_purchase(request, project_id):
-    user = request.user  # The user making the purchase (buyer)
-    template = Software.objects.get(id=project_id)
-    seller = template.user  # The user who owns the template (seller)
-    
-    # Retrieve the amount from session and ensure it's a Decimal
-    amount = request.session.get('amount')
-    
-    if amount is None:
-        # Handle case where amount is missing
-        return redirect(reverse('viewsoftware', args=[project_id]))
-
-    try:
-        amount = Decimal(amount)
-    except (ValueError, TypeError):
-        # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewsoftware', args=[project_id]))
-
-    # Check if the seller has a Myamount record
-    my_amount_record = Myamount.objects.filter(user=seller).first()
-    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
-    
-    if not my_amount_record:
-        # If the record does not exist, create it
-        my_amount_record = Myamount.objects.create(
-            user=seller,
-            Total_amount=amount,
-            My_amount=Decimal(0.8) * amount,
-            Reducted_amount=Decimal(0.2) * amount,
-            Withdrawed_amount=Decimal('0.00')
-        )
-        if not masteramount:
-            # If the record does not exist, create it
-            masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
-            unique_code = 'welcomemasterofus',
-        )
-        else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
-            my_amount_record.save()
-    else:
-        # If the record exists, update it
-        my_amount_record.Total_amount += amount
-        my_amount_record.My_amount += Decimal(0.8) * amount
-        my_amount_record.Reducted_amount=Decimal(0.2) * amount
-        my_amount_record.save()
-        
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
-        my_amount_record.save()
-
-    # Clear the session data if necessary
-    request.session.pop('amount', None)
-    
-@transaction.atomic
-def process_business_purchase(request, project_id):
-    user = request.user  # The user making the purchase (buyer)
-    template = Business.objects.get(id=project_id)
-    seller = template.user  # The user who owns the template (seller)
-    
-    # Retrieve the amount from session and ensure it's a Decimal
-    amount = request.session.get('amount')
-    
-    if amount is None:
-        # Handle case where amount is missing
-        return redirect(reverse('viewbusiness', args=[project_id]))
-
-    try:
-        amount = Decimal(amount)
-    except (ValueError, TypeError):
-        # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewbusiness', args=[project_id]))
-
-    # Check if the seller has a Myamount record
-    my_amount_record = Myamount.objects.filter(user=seller).first()
-    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
-    
-    if not my_amount_record:
-        # If the record does not exist, create it
-        my_amount_record = Myamount.objects.create(
-            user=seller,
-            Total_amount=amount,
-            My_amount=Decimal(0.8) * amount,
-            Reducted_amount=Decimal(0.2) * amount,
-            Withdrawed_amount=Decimal('0.00')
-        )
-        if not masteramount:
-            # If the record does not exist, create it
-            masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.035) * amount,
-            unique_code = 'welcomemasterofus',
-        )
-        else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
-            my_amount_record.save()
-    else:
-        # If the record exists, update it
-        my_amount_record.Total_amount += amount
-        my_amount_record.My_amount += Decimal(0.8) * amount
-        my_amount_record.Reducted_amount=Decimal(0.2) * amount
-        my_amount_record.save()
-        
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -8280,9 +8108,9 @@ def process_business_purchase(request, project_id):
     
     
 @transaction.atomic
-def process_image_purchase(request, image_id):
+def process_CAD_purchase(request, product_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Image.objects.get(id=image_id)
+    template = CAD.objects.get(id=product_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -8290,13 +8118,13 @@ def process_image_purchase(request, image_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewimage', args=[image_id]))
+        return redirect(reverse('viewCAD', args=[product_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewimage', args=[image_id]))
+        return redirect(reverse('viewCAD', args=[product_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -8314,8 +8142,8 @@ def process_image_purchase(request, image_id):
         if not masteramount:
             # If the record does not exist, create it
             masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.17) * amount,
-            Gateway_Amount=Decimal(0.03) * amount,
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
             unique_code = 'welcomemasterofus',
         )
         else:
@@ -8329,8 +8157,180 @@ def process_image_purchase(request, image_id):
         my_amount_record.Reducted_amount=Decimal(0.2) * amount
         my_amount_record.save()
         
-        masteramount.My_amount += Decimal(0.165) * amount
-        masteramount.Gateway_Amount += Decimal(0.035) * amount
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
+        my_amount_record.save()
+
+    # Clear the session data if necessary
+    request.session.pop('amount', None)
+    
+@transaction.atomic
+def process_software_purchase(request, product_id):
+    user = request.user  # The user making the purchase (buyer)
+    template = Software.objects.get(id=product_id)
+    seller = template.user  # The user who owns the template (seller)
+    
+    # Retrieve the amount from session and ensure it's a Decimal
+    amount = request.session.get('amount')
+    
+    if amount is None:
+        # Handle case where amount is missing
+        return redirect(reverse('viewsoftware', args=[product_id]))
+
+    try:
+        amount = Decimal(amount)
+    except (ValueError, TypeError):
+        # Handle case where amount cannot be converted to Decimal
+        return redirect(reverse('viewsoftware', args=[product_id]))
+
+    # Check if the seller has a Myamount record
+    my_amount_record = Myamount.objects.filter(user=seller).first()
+    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
+    
+    if not my_amount_record:
+        # If the record does not exist, create it
+        my_amount_record = Myamount.objects.create(
+            user=seller,
+            Total_amount=amount,
+            My_amount=Decimal(0.8) * amount,
+            Reducted_amount=Decimal(0.2) * amount,
+            Withdrawed_amount=Decimal('0.00')
+        )
+        if not masteramount:
+            # If the record does not exist, create it
+            masteramount = MasterAmount.objects.create(
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
+            unique_code = 'welcomemasterofus',
+        )
+        else:
+            masteramount.My_amount += Decimal(0.165) * amount
+            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            my_amount_record.save()
+    else:
+        # If the record exists, update it
+        my_amount_record.Total_amount += amount
+        my_amount_record.My_amount += Decimal(0.8) * amount
+        my_amount_record.Reducted_amount=Decimal(0.2) * amount
+        my_amount_record.save()
+        
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
+        my_amount_record.save()
+
+    # Clear the session data if necessary
+    request.session.pop('amount', None)
+    
+@transaction.atomic
+def process_business_purchase(request, product_id):
+    user = request.user  # The user making the purchase (buyer)
+    template = Business.objects.get(id=product_id)
+    seller = template.user  # The user who owns the template (seller)
+    
+    # Retrieve the amount from session and ensure it's a Decimal
+    amount = request.session.get('amount')
+    
+    if amount is None:
+        # Handle case where amount is missing
+        return redirect(reverse('viewbusiness', args=[product_id]))
+
+    try:
+        amount = Decimal(amount)
+    except (ValueError, TypeError):
+        # Handle case where amount cannot be converted to Decimal
+        return redirect(reverse('viewbusiness', args=[product_id]))
+
+    # Check if the seller has a Myamount record
+    my_amount_record = Myamount.objects.filter(user=seller).first()
+    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
+    
+    if not my_amount_record:
+        # If the record does not exist, create it
+        my_amount_record = Myamount.objects.create(
+            user=seller,
+            Total_amount=amount,
+            My_amount=Decimal(0.8) * amount,
+            Reducted_amount=Decimal(0.2) * amount,
+            Withdrawed_amount=Decimal('0.00')
+        )
+        if not masteramount:
+            # If the record does not exist, create it
+            masteramount = MasterAmount.objects.create(
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
+            unique_code = 'welcomemasterofus',
+        )
+        else:
+            masteramount.My_amount += Decimal(0.165) * amount
+            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            my_amount_record.save()
+    else:
+        # If the record exists, update it
+        my_amount_record.Total_amount += amount
+        my_amount_record.My_amount += Decimal(0.8) * amount
+        my_amount_record.Reducted_amount=Decimal(0.2) * amount
+        my_amount_record.save()
+        
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
+        my_amount_record.save()
+
+    # Clear the session data if necessary
+    request.session.pop('amount', None)
+    
+    
+@transaction.atomic
+def process_image_purchase(request, product_id):
+    user = request.user  # The user making the purchase (buyer)
+    template = Image.objects.get(id=product_id)
+    seller = template.user  # The user who owns the template (seller)
+    
+    # Retrieve the amount from session and ensure it's a Decimal
+    amount = request.session.get('amount')
+    
+    if amount is None:
+        # Handle case where amount is missing
+        return redirect(reverse('viewimage', args=[product_id]))
+
+    try:
+        amount = Decimal(amount)
+    except (ValueError, TypeError):
+        # Handle case where amount cannot be converted to Decimal
+        return redirect(reverse('viewimage', args=[product_id]))
+
+    # Check if the seller has a Myamount record
+    my_amount_record = Myamount.objects.filter(user=seller).first()
+    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
+    
+    if not my_amount_record:
+        # If the record does not exist, create it
+        my_amount_record = Myamount.objects.create(
+            user=seller,
+            Total_amount=amount,
+            My_amount=Decimal(0.8) * amount,
+            Reducted_amount=Decimal(0.2) * amount,
+            Withdrawed_amount=Decimal('0.00')
+        )
+        if not masteramount:
+            # If the record does not exist, create it
+            masteramount = MasterAmount.objects.create(
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
+            unique_code = 'welcomemasterofus',
+        )
+        else:
+            masteramount.My_amount += Decimal(0.165) * amount
+            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            my_amount_record.save()
+    else:
+        # If the record exists, update it
+        my_amount_record.Total_amount += amount
+        my_amount_record.My_amount += Decimal(0.8) * amount
+        my_amount_record.Reducted_amount=Decimal(0.2) * amount
+        my_amount_record.save()
+        
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
         my_amount_record.save()
 
     # Clear the session data if necessary
@@ -8365,6 +8365,8 @@ def withdraw(request):
 
             if my_amount_record.My_amount < withdraw_instance.Amount_in_USD:
                 messages.info(request, 'Amount to withdraw is greater than your balance.')
+            elif withdraw_instance.Amount_in_USD < 20:
+                messages.info(request, 'Sorry! Minimum Amount To Withdraw is $20.')
             else:
                 # Update Myamount record with new values
                 twent = withdraw_instance.Amount_in_USD * Decimal('0.25')
@@ -8385,7 +8387,7 @@ def withdraw(request):
                 email = request.user.email
                 
                 subject = "WORNTECH ONLINE SERVICES"
-                message = f"Hellow {fname} {lname} You have withdrawed ${withdraw_instance.Amount_in_USD} from Worntech, you money will be confirmed soon, contact +255 710 891 288"
+                message = f"Hellow {fname} {lname} You have withdrawed ${withdraw_instance.Amount_in_USD} from Worntech, you money will be confirmed soon, For any isue contact us, contact +255 710 891 288"
                 #from_email = settings.EMAIL_HOST_USER
                 from_email = 'worntechservices@gmail.com'
                 recipient_list = [email]
@@ -8436,7 +8438,7 @@ def master_withdraw(request):
             else:
                 
                 # If the record exists, update it
-                three = Decimal(masterwithdraw.Amount_in_USD) * Decimal('0.212')
+                three = Decimal(masterwithdraw.Amount_in_USD) * Decimal('0.739')
                 amount.My_amount -= masterwithdraw.Amount_in_USD
                 amount.Gateway_Amount -= three
                 amount.Withdrawed_amount += masterwithdraw.Amount_in_USD
@@ -8497,8 +8499,8 @@ def viewmypayment(request, id):
     
     mypaymentview = Withdraw.objects.get(id=id)
     
-    system_fee = 0.2063 * float(mypaymentview.Amount_in_USD)
-    gateway_fee = 0.0438 * float(mypaymentview.Amount_in_USD)
+    system_fee = 0.1438 * float(mypaymentview.Amount_in_USD)
+    gateway_fee = 0.1063 * float(mypaymentview.Amount_in_USD)
     receiving = float(mypaymentview.Amount_in_USD)
     Total_amount = system_fee + gateway_fee + receiving
     
@@ -8607,7 +8609,7 @@ def viewmasterpayment(request, id):
     mypaymentview = MasterWithdraw.objects.get(id=id)
     
     # system_fee = 0.2125 * float(mypaymentview.Amount_in_USD)
-    gateway_fee = 0.212 * float(mypaymentview.Amount_in_USD)
+    gateway_fee = 0.739 * float(mypaymentview.Amount_in_USD)
     receiving = float(mypaymentview.Amount_in_USD)
     Total_amount = gateway_fee + receiving
     
@@ -8801,6 +8803,15 @@ def my_transaction(request):
     paymentproject = PaymentProject.objects.filter(user=request.user)
     paymentimage = PaymentImage.objects.filter(user=request.user)
     
+    paymentbook = PaymentBook.objects.filter(user=request.user)
+    paymentprintable = PaymentPrintable.objects.filter(user=request.user)
+    paymentmusic = PaymentMusic.objects.filter(user=request.user)
+    paymentmultimedia = PaymentMultimedia.objects.filter(user=request.user)
+    paymentdigitalArt = PaymentDigitalArt.objects.filter(user=request.user)
+    paymentCAD = PaymentCAD.objects.filter(user=request.user)
+    paymentsoftware = PaymentSoftware.objects.filter(user=request.user)
+    paymentbusiness = PaymentBusiness.objects.filter(user=request.user)
+    
     # Order the notifications by the most recent ones first
     notification = Notification.objects.filter(user=request.user).order_by('-id')
     notificationcount = Notification.objects.filter(user=request.user, viewed=False).count()
@@ -8818,6 +8829,15 @@ def my_transaction(request):
         'paymentgraphics': paymentgraphics,
         'paymentproject': paymentproject,
         'paymentimage': paymentimage,
+        
+        'paymentbook': paymentbook,
+        'paymentprintable': paymentprintable,
+        'paymentmusic': paymentmusic,
+        'paymentmultimedia': paymentmultimedia,
+        'paymentdigitalArt': paymentdigitalArt,
+        'paymentCAD': paymentCAD,
+        'paymentsoftware': paymentsoftware,
+        'paymentbusiness': paymentbusiness,
         
         'notification': notification,
         'notificationcount': notificationcount,
