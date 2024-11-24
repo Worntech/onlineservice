@@ -52,6 +52,7 @@ from django.db.models import Q
 import random
 from itertools import chain
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
@@ -6810,8 +6811,8 @@ def handle_websitetemplate_payment(request, transaction_id, unique_code):
         template_id = payment.template.id
         payment = get_object_or_404(Payment, template_id=template_id, unique_code=unique_code, user=request.user)
         update_websitetemplatepayment_status(payment, transaction_id)
-        process_websitetemplate_purchase(request, template_id)
-        return redirect(reverse('viewwebsitetemplate', args=[template_id]))
+        # process_websitetemplate_purchase(request, template_id)
+        return redirect(reverse('process_websitetemplate_purchase', args=[template_id]))
     return None
 
 def handle_mobiletemplate_payment(request, transaction_id, unique_code):
@@ -6823,8 +6824,8 @@ def handle_mobiletemplate_payment(request, transaction_id, unique_code):
         mobiletemplate_id = mobiletemplatepayment.mobiletemplate.id
         mobiletemplatepayment = get_object_or_404(PaymentMobiletemplate, mobiletemplate_id=mobiletemplate_id, unique_code=unique_code, user=request.user)
         update_mobiletemplatepayment_status(mobiletemplatepayment, transaction_id)
-        process_mobiletemplate_purchase(request, mobiletemplate_id)
-        return redirect(reverse('viewmobiletemplate', args=[mobiletemplate_id]))
+        # process_mobiletemplate_purchase(request, mobiletemplate_id)
+        return redirect(reverse('process_mobiletemplate_purchase', args=[mobiletemplate_id]))
     return None
 
 def handle_desktoptemplate_payment(request, transaction_id, unique_code):
@@ -6836,8 +6837,8 @@ def handle_desktoptemplate_payment(request, transaction_id, unique_code):
         desktoptemplate_id = desktoptemplatepayment.desktoptemplate.id
         desktoptemplatepayment = get_object_or_404(PaymentDesktoptemplate, desktoptemplate_id=desktoptemplate_id, unique_code=unique_code, user=request.user)
         update_desktoptemplatepayment_status(desktoptemplatepayment, transaction_id)
-        process_desktoptemplate_purchase(request, desktoptemplate_id)
-        return redirect(reverse('viewdesktoptemplate', args=[desktoptemplate_id]))
+        #process_desktoptemplate_purchase(request, desktoptemplate_id)
+        return redirect(reverse('process_desktoptemplate_purchase', args=[desktoptemplate_id]))
     return None
 
 def handle_microsofttemplate_payment(request, transaction_id, unique_code):
@@ -6849,8 +6850,8 @@ def handle_microsofttemplate_payment(request, transaction_id, unique_code):
         microsofttemplate_id = mobiletemplatepayment.mobiletemplate.id
         mobiletemplatepayment = get_object_or_404(PaymentMicrosofttemplate, microsofttemplate_id=microsofttemplate_id, unique_code=unique_code, user=request.user)
         update_microsofttemplatepayment_status(microsofttemplatepayment, transaction_id)
-        process_microsofttemplate_purchase(request, microsofttemplate_id)
-        return redirect(reverse('viewmobiletemplate', args=[microsofttemplate_id]))
+        # process_microsofttemplate_purchase(request, microsofttemplate_id)
+        return redirect(reverse('process_microsofttemplate_purchase', args=[microsofttemplate_id]))
     return None
 
 def handle_adobetemplate_payment(request, transaction_id, unique_code):
@@ -6862,8 +6863,8 @@ def handle_adobetemplate_payment(request, transaction_id, unique_code):
         adobetemplate_id = adobetemplatepayment.adobetemplate.id
         adobetemplatepayment = get_object_or_404(PaymentAdobetemplate, adobetemplate_id=adobetemplate_id, unique_code=unique_code, user=request.user)
         update_adobetemplatepayment_status(adobetemplatepayment, transaction_id)
-        process_adobetemplate_purchase(request, adobetemplate_id)
-        return redirect(reverse('viewadobetemplate', args=[adobetemplate_id]))
+        # process_adobetemplate_purchase(request, adobetemplate_id)
+        return redirect(reverse('process_adobetemplate_purchase', args=[adobetemplate_id]))
     return None
 
 #HANDLING PAYMENT FOR COURSES
@@ -6943,8 +6944,8 @@ def handle_project_payment(request, transaction_id, unique_code):
     if projectpayment:
         projectpayment = get_object_or_404(PaymentProject, unique_code=unique_code, user=request.user)
         update_projectpayment_status(projectpayment, transaction_id)
-        process_project_purchase(request, product_id)
-        return redirect(reverse('viewproject', args=[product_id]))
+        # process_project_purchase(request, product_id)
+        return redirect(reverse('process_project_purchase', args=[product_id]))
     return None
 
 # HANDLE PAYMENT FOR DIGITAL PRODUCT
@@ -6957,8 +6958,8 @@ def handle_book_payment(request, transaction_id, unique_code):
     if bookpayment:
         bookpayment = get_object_or_404(PaymentBook, unique_code=unique_code, user=request.user)
         update_bookpayment_status(bookpayment, transaction_id)
-        process_book_purchase(request, product_id)
-        return redirect(reverse('viewbook', args=[product_id]))
+        # process_book_purchase(request, product_id)
+        return redirect(reverse('process_book_purchase', args=[product_id]))
     return None
 
 def handle_printable_payment(request, transaction_id, unique_code):
@@ -6970,8 +6971,8 @@ def handle_printable_payment(request, transaction_id, unique_code):
     if printablepayment:
         printablepayment = get_object_or_404(PaymentPrintable, unique_code=unique_code, user=request.user)
         update_printablepayment_status(printablepayment, transaction_id)
-        process_printable_purchase(request, product_id)
-        return redirect(reverse('viewprintable', args=[product_id]))
+        # process_printable_purchase(request, product_id)
+        return redirect(reverse('process_printable_purchase', args=[product_id]))
     return None
 
 def handle_music_payment(request, transaction_id, unique_code):
@@ -6983,8 +6984,8 @@ def handle_music_payment(request, transaction_id, unique_code):
     if musicpayment:
         musicpayment = get_object_or_404(PaymentMusic, unique_code=unique_code, user=request.user)
         update_musicpayment_status(musicpayment, transaction_id)
-        process_music_purchase(request, product_id)
-        return redirect(reverse('viewmusic', args=[product_id]))
+        # process_music_purchase(request, product_id)
+        return redirect(reverse('process_music_purchase', args=[product_id]))
     return None
 
 def handle_multimedia_payment(request, transaction_id, unique_code):
@@ -6996,8 +6997,8 @@ def handle_multimedia_payment(request, transaction_id, unique_code):
     if multimediapayment:
         multimediapayment = get_object_or_404(PaymentMultimedia, unique_code=unique_code, user=request.user)
         update_multimediapayment_status(multimediapayment, transaction_id)
-        process_multimedia_purchase(request, product_id)
-        return redirect(reverse('viewmultimedia', args=[product_id]))
+        # process_multimedia_purchase(request, product_id)
+        return redirect(reverse('process_multimedia_purchase', args=[product_id]))
     return None
 
 def handle_digitalArt_payment(request, transaction_id, unique_code):
@@ -7009,8 +7010,8 @@ def handle_digitalArt_payment(request, transaction_id, unique_code):
     if digitalArtpayment:
         digitalArtpayment = get_object_or_404(PaymentDigitalArt, unique_code=unique_code, user=request.user)
         update_digitalArtpayment_status(digitalArtpayment, transaction_id)
-        process_digitalArt_purchase(request, product_id)
-        return redirect(reverse('viewdigitalArt', args=[product_id]))
+        # process_digitalArt_purchase(request, product_id)
+        return redirect(reverse('process_digitalArt_purchase', args=[product_id]))
     return None
 
 def handle_CAD_payment(request, transaction_id, unique_code):
@@ -7022,8 +7023,8 @@ def handle_CAD_payment(request, transaction_id, unique_code):
     if CADpayment:
         CADpayment = get_object_or_404(PaymentCAD, unique_code=unique_code, user=request.user)
         update_CADpayment_status(CADpayment, transaction_id)
-        process_CAD_purchase(request, product_id)
-        return redirect(reverse('viewCAD', args=[product_id]))
+        # process_CAD_purchase(request, product_id)
+        return redirect(reverse('process_CAD_purchase', args=[product_id]))
     return None
 
 def handle_software_payment(request, transaction_id, unique_code):
@@ -7035,8 +7036,8 @@ def handle_software_payment(request, transaction_id, unique_code):
     if softwarepayment:
         softwarepayment = get_object_or_404(PaymentSoftware, unique_code=unique_code, user=request.user)
         update_softwarepayment_status(softwarepayment, transaction_id)
-        process_CAD_purchase(request, product_id)
-        return redirect(reverse('viewsoftware', args=[product_id]))
+        # process_CAD_purchase(request, product_id)
+        return redirect(reverse('process_software_purchase', args=[product_id]))
     return None
 
 def handle_business_payment(request, transaction_id, unique_code):
@@ -7048,8 +7049,8 @@ def handle_business_payment(request, transaction_id, unique_code):
     if businesspayment:
         businesspayment = get_object_or_404(PaymentBusiness, unique_code=unique_code, user=request.user)
         update_businesspayment_status(businesspayment, transaction_id)
-        process_business_purchase(request, product_id)
-        return redirect(reverse('viewbusiness', args=[product_id]))
+        # process_business_purchase(request, product_id)
+        return redirect(reverse('process_business_purchase', args=[product_id]))
     return None
 
 # HANDLE PAYMENT FOR IMAGE
@@ -7062,8 +7063,8 @@ def handle_image_payment(request, transaction_id, unique_code):
     if imagepayment:
         imagepayment = get_object_or_404(PaymentImage, unique_code=unique_code, user=request.user)
         update_imagepayment_status(imagepayment, transaction_id)
-        process_image_purchase(request, product_id)
-        return redirect(reverse('viewimage', args=[product_id]))
+        # process_image_purchase(request, product_id)
+        return redirect(reverse('process_image_purchase', args=[product_id]))
     return None
 
 # PAYMENT COMPLETION
@@ -7194,9 +7195,9 @@ class PurchasedView(ListView):
 
 
 @transaction.atomic
-def process_websitetemplate_purchase(request, product_id):
+def process_websitetemplate_purchase(request, template_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Websitetemplate.objects.get(id=product_id)
+    template = Websitetemplate.objects.get(id=template_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7204,13 +7205,72 @@ def process_websitetemplate_purchase(request, product_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewwebsitetemplate', args=[product_id]))
+        return redirect(reverse('viewwebsitetemplate', args=[template_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewwebsitetemplate', args=[product_id]))
+        return redirect(reverse('viewwebsitetemplate', args=[template_id]))
+
+    # Check if the seller has a Myamount record
+    my_amount_record = Myamount.objects.filter(user=seller).first()
+    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
+    
+    if not my_amount_record:
+        # If the record does not exist, create it
+        my_amount_record = Myamount.objects.create(
+            user=seller,
+            Total_amount=amount,
+            My_amount=Decimal(0.8) * amount,
+            Reducted_amount=Decimal(0.2) * amount,
+            Withdrawed_amount=Decimal('0.00')
+        )
+        if not masteramount:
+            # If the record does not exist, create it
+            masteramount = MasterAmount.objects.create(
+            My_amount=Decimal(0.115) * amount,
+            Gateway_Amount=Decimal(0.085) * amount,
+            unique_code = 'welcomemasterofus',
+        )
+        else:
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
+            my_amount_record.save()
+    else:
+        # If the record exists, update it
+        my_amount_record.Total_amount += amount
+        my_amount_record.My_amount += Decimal(0.8) * amount
+        my_amount_record.Reducted_amount=Decimal(0.2) * amount
+        my_amount_record.save()
+        
+        masteramount.My_amount += Decimal(0.115) * amount
+        masteramount.Gateway_Amount=Decimal(0.085) * amount
+        my_amount_record.save()
+        
+
+    # Clear the session data if necessary
+    request.session.pop('amount', None)
+    return redirect(reverse('viewwebsitetemplate', args=[template_id]))
+    
+@transaction.atomic
+def process_mobiletemplate_purchase(request, mobiletemplate_id):
+    user = request.user  # The user making the purchase (buyer)
+    template = Mobiletemplate.objects.get(id=mobiletemplate_id)
+    seller = template.user  # The user who owns the template (seller)
+    
+    # Retrieve the amount from session and ensure it's a Decimal
+    amount = request.session.get('amount')
+    
+    if amount is None:
+        # Handle case where amount is missing
+        return redirect(reverse('viewmobiletemplate', args=[mobiletemplate_id]))
+
+    try:
+        amount = Decimal(amount)
+    except (ValueError, TypeError):
+        # Handle case where amount cannot be converted to Decimal
+        return redirect(reverse('viewmobiletemplate', args=[mobiletemplate_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7249,11 +7309,13 @@ def process_websitetemplate_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
-    
+    return redirect(reverse('viewmobiletemplate', args=[mobiletemplate_id]))
+
+@never_cache
 @transaction.atomic
-def process_mobiletemplate_purchase(request, product_id):
+def process_desktoptemplate_purchase(request, desktoptemplate_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Mobiletemplate.objects.get(id=product_id)
+    template = Desktoptemplate.objects.get(id=desktoptemplate_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7261,13 +7323,13 @@ def process_mobiletemplate_purchase(request, product_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewmobiletemplate', args=[product_id]))
+        return redirect(reverse('viewdesktoptemplate', args=[desktoptemplate_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewmobiletemplate', args=[product_id]))
+        return redirect(reverse('viewdesktoptemplate', args=[desktoptemplate_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7290,8 +7352,8 @@ def process_mobiletemplate_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7306,11 +7368,12 @@ def process_mobiletemplate_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewdesktoptemplate', args=[desktoptemplate_id]))
     
 @transaction.atomic
-def process_desktoptemplate_purchase(request, product_id):
+def process_microsofttemplate_purchase(request, microsofttemplate_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Desktoptemplate.objects.get(id=product_id)
+    template = Microsofttemplate.objects.get(id=microsofttemplate_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7318,70 +7381,13 @@ def process_desktoptemplate_purchase(request, product_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewdesktoptemplate', args=[product_id]))
+        return redirect(reverse('viewmicrosofttemplate', args=[microsofttemplate_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewdesktoptemplate', args=[product_id]))
-
-    # Check if the seller has a Myamount record
-    my_amount_record = Myamount.objects.filter(user=seller).first()
-    masteramount = MasterAmount.objects.filter(unique_code='welcomemasterofus').first()
-    
-    if not my_amount_record:
-        # If the record does not exist, create it
-        my_amount_record = Myamount.objects.create(
-            user=seller,
-            Total_amount=amount,
-            My_amount=Decimal(0.8) * amount,
-            Reducted_amount=Decimal(0.2) * amount,
-            Withdrawed_amount=Decimal('0.00')
-        )
-        if not masteramount:
-            # If the record does not exist, create it
-            masteramount = MasterAmount.objects.create(
-            My_amount=Decimal(0.165) * amount,
-            Gateway_Amount=Decimal(0.03) * amount,
-            unique_code = 'welcomemasterofus',
-        )
-        else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
-            my_amount_record.save()
-    else:
-        # If the record exists, update it
-        my_amount_record.Total_amount += amount
-        my_amount_record.My_amount += Decimal(0.8) * amount
-        my_amount_record.Reducted_amount=Decimal(0.2) * amount
-        my_amount_record.save()
-        
-        masteramount.My_amount += Decimal(0.115) * amount
-        masteramount.Gateway_Amount=Decimal(0.085) * amount
-        my_amount_record.save()
-
-    # Clear the session data if necessary
-    request.session.pop('amount', None)
-    
-@transaction.atomic
-def process_microsofttemplate_purchase(request, product_id):
-    user = request.user  # The user making the purchase (buyer)
-    template = Microsofttemplate.objects.get(id=product_id)
-    seller = template.user  # The user who owns the template (seller)
-    
-    # Retrieve the amount from session and ensure it's a Decimal
-    amount = request.session.get('amount')
-    
-    if amount is None:
-        # Handle case where amount is missing
-        return redirect(reverse('viewmicrosofttemplate', args=[product_id]))
-
-    try:
-        amount = Decimal(amount)
-    except (ValueError, TypeError):
-        # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewmicrosofttemplate', args=[product_id]))
+        return redirect(reverse('viewmicrosofttemplate', args=[microsofttemplate_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7404,8 +7410,8 @@ def process_microsofttemplate_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7420,11 +7426,12 @@ def process_microsofttemplate_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewmicrosofttemplate', args=[microsofttemplate_id]))
     
 @transaction.atomic
-def process_adobetemplate_purchase(request, product_id):
+def process_adobetemplate_purchase(request, adobetemplate_id):
     user = request.user  # The user making the purchase (buyer)
-    template = Adobetemplate.objects.get(id=product_id)
+    template = Adobetemplate.objects.get(id=adobetemplate_id)
     seller = template.user  # The user who owns the template (seller)
     
     # Retrieve the amount from session and ensure it's a Decimal
@@ -7432,13 +7439,13 @@ def process_adobetemplate_purchase(request, product_id):
     
     if amount is None:
         # Handle case where amount is missing
-        return redirect(reverse('viewadobetemplate', args=[product_id]))
+        return redirect(reverse('viewadobetemplate', args=[adobetemplate_id]))
 
     try:
         amount = Decimal(amount)
     except (ValueError, TypeError):
         # Handle case where amount cannot be converted to Decimal
-        return redirect(reverse('viewadobetemplate', args=[product_id]))
+        return redirect(reverse('viewadobetemplate', args=[adobetemplate_id]))
 
     # Check if the seller has a Myamount record
     my_amount_record = Myamount.objects.filter(user=seller).first()
@@ -7461,8 +7468,8 @@ def process_adobetemplate_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7477,6 +7484,7 @@ def process_adobetemplate_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewadobetemplate', args=[adobetemplate_id]))
     
 @transaction.atomic
 def process_website_purchase(request, course_id):
@@ -7518,8 +7526,8 @@ def process_website_purchase(request, course_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7575,8 +7583,8 @@ def process_mobile_purchase(request, course_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7632,8 +7640,8 @@ def process_desktop_purchase(request, course_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7689,8 +7697,8 @@ def process_embeded_purchase(request, course_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7746,8 +7754,8 @@ def process_graphics_purchase(request, course_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7803,8 +7811,8 @@ def process_project_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7819,6 +7827,7 @@ def process_project_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewproject', args=[product_id]))
 
 # PROCESS DIGITAL PRODUCT PURCHASE
 @transaction.atomic
@@ -7861,8 +7870,8 @@ def process_book_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7877,6 +7886,7 @@ def process_book_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewbook', args=[product_id]))
     
 @transaction.atomic
 def process_printable_purchase(request, product_id):
@@ -7918,8 +7928,8 @@ def process_printable_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7934,6 +7944,7 @@ def process_printable_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewprintable', args=[product_id]))
     
 @transaction.atomic
 def process_music_purchase(request, product_id):
@@ -7975,8 +7986,8 @@ def process_music_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -7991,6 +8002,7 @@ def process_music_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewmusic', args=[product_id]))
     
 @transaction.atomic
 def process_multimedia_purchase(request, product_id):
@@ -8032,8 +8044,8 @@ def process_multimedia_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -8048,6 +8060,7 @@ def process_multimedia_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewmultimedia', args=[product_id]))
     
 @transaction.atomic
 def process_digitalArt_purchase(request, product_id):
@@ -8089,8 +8102,8 @@ def process_digitalArt_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -8105,6 +8118,7 @@ def process_digitalArt_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewdigitalArt', args=[product_id]))
     
     
 @transaction.atomic
@@ -8147,8 +8161,8 @@ def process_CAD_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -8163,6 +8177,7 @@ def process_CAD_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewCAD', args=[product_id]))
     
 @transaction.atomic
 def process_software_purchase(request, product_id):
@@ -8204,8 +8219,8 @@ def process_software_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -8220,6 +8235,7 @@ def process_software_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewsoftware', args=[product_id]))
     
 @transaction.atomic
 def process_business_purchase(request, product_id):
@@ -8261,8 +8277,8 @@ def process_business_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -8277,6 +8293,7 @@ def process_business_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewbusiness', args=[product_id]))
     
     
 @transaction.atomic
@@ -8319,8 +8336,8 @@ def process_image_purchase(request, product_id):
             unique_code = 'welcomemasterofus',
         )
         else:
-            masteramount.My_amount += Decimal(0.165) * amount
-            masteramount.Gateway_Amount=Decimal(0.035) * amount
+            masteramount.My_amount += Decimal(0.115) * amount
+            masteramount.Gateway_Amount=Decimal(0.085) * amount
             my_amount_record.save()
     else:
         # If the record exists, update it
@@ -8335,6 +8352,7 @@ def process_image_purchase(request, product_id):
 
     # Clear the session data if necessary
     request.session.pop('amount', None)
+    return redirect(reverse('viewimage', args=[product_id]))
     
 @login_required(login_url='signin')
 def withdraw(request):

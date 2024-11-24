@@ -742,6 +742,22 @@ urlpatterns = [
     # FOR PAYMENT
     path('pesapal/transaction/completed/', views.payment_completed, name='payment_completed'),
     
+    path('process_websitetemplate_purchase/<int:template_id>/', views.process_websitetemplate_purchase, name = "process_websitetemplate_purchase"),
+    path('process_mobiletemplate_purchase/<int:mobiletemplate_id>/', views.process_mobiletemplate_purchase, name = "process_mobiletemplate_purchase"),
+    path('process_desktoptemplate_purchase/<int:desktoptemplate_id>/', views.process_desktoptemplate_purchase, name = "process_desktoptemplate_purchase"),
+    path('process_microsofttemplate_purchase/<int:microsofttemplate_id>/', views.process_microsofttemplate_purchase, name = "process_microsofttemplate_purchase"),
+    path('process_adobetemplate_purchase/<int:adobetemplate_id>/', views.process_adobetemplate_purchase, name = "process_adobetemplate_purchase"),
+    path('process_project_purchase/<int:product_id>/', views.process_project_purchase, name = "process_project_purchase"),
+    path('process_book_purchase/<int:product_id>/', views.process_book_purchase, name = "process_book_purchase"),
+    path('process_printable_purchase/<int:product_id>/', views.process_printable_purchase, name = "process_printable_purchase"),
+    path('process_music_purchase/<int:product_id>/', views.process_music_purchase, name = "process_music_purchase"),
+    path('process_multimedia_purchase/<int:product_id>/', views.process_multimedia_purchase, name = "process_multimedia_purchase"),
+    path('process_digitalArt_purchase/<int:product_id>/', views.process_digitalArt_purchase, name = "process_digitalArt_purchase"),
+    path('process_CAD_purchase/<int:product_id>/', views.process_CAD_purchase, name = "process_CAD_purchase"),
+    path('process_software_purchase/<int:product_id>/', views.process_software_purchase, name = "process_software_purchase"),
+    path('process_business_purchase/<int:product_id>/', views.process_business_purchase, name = "process_business_purchase"),
+    path('process_image_purchase/<int:product_id>/', views.process_image_purchase, name = "process_image_purchase"),
+    
     path('paymentwebsitetemplate/<int:product_id>/', PaymentViewWebsitetemplate.as_view(), name='paymentwebsitetemplate'),
     path('paymentmobiletemplate/<int:product_id>/', PaymentViewMobiletemplate.as_view(), name='paymentmobiletemplate'),
     path('paymentdesktoptemplate/<int:product_id>/', PaymentViewDesktoptemplate.as_view(), name='paymentdesktoptemplate'),
