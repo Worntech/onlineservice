@@ -224,10 +224,10 @@
                             </ul>
 
                             
-                            {% comment %} <form class="d-flex search-form">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
-                            </form> {% endcomment %}
+                            <form class="d-flex search-form" method="get" action="{% url 'search_all_product' %}">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                            <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
                             {% else%}
 
                             <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
@@ -347,10 +347,10 @@
                             </ul>
 
                             
-                            {% comment %} <form class="d-flex search-form">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
-                            </form> {% endcomment %}
+                            <form class="d-flex search-form" method="get" action="{% url 'search_all_product' %}">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                            <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
                             {% endif %}
                             {% else %}
                             <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
@@ -423,10 +423,10 @@
                             </ul>
 
                             
-                            {% comment %} <form class="d-flex search-form">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
-                            </form> {% endcomment %}
+                            <form class="d-flex search-form" method="get" action="{% url 'search_all_product' %}">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                            <button class="btn btn-outline-success" type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
                             {% endif %}
 
 

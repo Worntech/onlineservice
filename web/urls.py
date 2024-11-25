@@ -646,6 +646,7 @@ urlpatterns = [
     path("desktoptemplatepost/",views.desktoptemplatepost,name = "desktoptemplatepost"),
     path("microsofttemplatepost/",views.microsofttemplatepost,name = "microsofttemplatepost"),
     path("adobeposttemplate/",views.adobeposttemplate,name = "adobeposttemplate"),
+    path("allproduct/",views.allproduct,name = "allproduct"),
     
     # url for viewing course
     path('viewwebsite/<str:pk>/', views.viewwebsite.as_view(), name = "viewwebsite"),
@@ -1225,6 +1226,7 @@ urlpatterns = [
     path('search_marketing_materials/', views.search_marketing_materials, name='search_marketing_materials'),
     path('search_analytics_tools/', views.search_analytics_tools, name='search_analytics_tools'),
     path('search_CRM_templates/', views.search_CRM_templates, name='search_CRM_templates'),
+    path('search_all_product/', views.search_all_product, name='search_all_product'),
     
     # FOR SUBSCRIPTION
     path('subscription/', views.subscription, name='subscription'),

@@ -53,6 +53,7 @@ import random
 from itertools import chain
 from django.urls import reverse_lazy
 from django.views.decorators.cache import never_cache
+from django.views.decorators.http import require_POST
 
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
@@ -3567,6 +3568,41 @@ def CRM_templates(request):
         "product":product
     }
     return render(request, 'web/CRM_templates.html',context)
+
+def allproduct(request):
+    productproject = Project.objects.order_by('?')
+    productimage = Image.objects.order_by('?')
+    productbook = Book.objects.order_by('?')
+    productprintable = Printable.objects.order_by('?')
+    productmusic = Music.objects.order_by('?')
+    productmultmedia = Multimedia.objects.order_by('?')
+    productdigitalart = DigitalArt.objects.order_by('?')
+    productcad = CAD.objects.order_by('?')
+    productsoftware = Software.objects.order_by('?')
+    productbusiness = Business.objects.order_by('?')
+    productwebsitetemplate = Websitetemplate.objects.order_by('?')
+    productmobiletemplate = Mobiletemplate.objects.order_by('?')
+    productdesktoptemplate = Desktoptemplate.objects.order_by('?')
+    productmicrosofttemplate = Microsofttemplate.objects.order_by('?')
+    productadobetemplate = Adobetemplate.objects.order_by('?')
+    context={
+        "productproject":productproject,
+        "productimage":productimage,
+        "productbook":productbook,
+        "productprintable":productprintable,
+        "productmusic":productmusic,
+        "productmultmedia":productmultmedia,
+        "productdigitalart":productdigitalart,
+        "productcad":productcad,
+        "productsoftware":productsoftware,
+        "productbusiness":productbusiness,
+        "productwebsitetemplate":productwebsitetemplate,
+        "productmobiletemplate":productmobiletemplate,
+        "productdesktoptemplate":productdesktoptemplate,
+        "productmicrosofttemplate":productmicrosofttemplate,
+        "productadobetemplate":productadobetemplate,
+    }
+    return render(request, 'web/allproduct.html',context)
 
 def template(request):
     return render(request, 'web/template.html')
@@ -7192,7 +7228,6 @@ class PurchasedView(ListView):
         }
 
         return render(request, self.template_name, context)
-
 
 @transaction.atomic
 def process_websitetemplate_purchase(request, template_id):
@@ -15854,6 +15889,73 @@ def search_CRM_templates(request):
         product = Business.objects.all()
 
     return render(request, 'web/CRM_templates.html', {'product': product})
+
+def search_all_product(request):
+    query = request.GET.get('q')
+
+    if query:
+        # Split the query into individual words
+        query_words = query.split()
+
+        # Construct a query that looks for each word in the Title
+        queries = Q()
+        for word in query_words:
+            queries |= Q(Title__icontains=word)
+
+        # Filter templates that match any of the query words
+        productproject = Project.objects.filter(queries)
+        productimage = Image.objects.filter(queries)
+        productbook = Book.objects.filter(queries)
+        productprintable = Printable.objects.filter(queries)
+        productmusic = Music.objects.filter(queries)
+        productmultmedia = Multimedia.objects.filter(queries)
+        productdigitalart = DigitalArt.objects.filter(queries)
+        productcad = CAD.objects.filter(queries)
+        productsoftware = Software.objects.filter(queries)
+        productbusiness = Business.objects.filter(queries)
+        productwebsitetemplate = Websitetemplate.objects.filter(queries)
+        productmobiletemplate = Mobiletemplate.objects.filter(queries)
+        productdesktoptemplate = Desktoptemplate.objects.filter(queries)
+        productmirosofttemplate = Microsofttemplate.objects.filter(queries)
+        productadobetemplate = Adobetemplate.objects.filter(queries)
+    else:
+        productproject = Project.objects.all()
+        productimage = Image.objects.all()
+        productbook = Book.objects.all()
+        productprintable = Printable.objects.all()
+        productmusic = Music.objects.all()
+        productmultmedia = Multimedia.objects.all()
+        productdigitalart = DigitalArt.objects.all()
+        productcad = CAD.objects.all()
+        productsoftware = Software.objects.all()
+        productbusiness = Business.objects.all()
+        productwebsitetemplate = Websitetemplate.objects.all()
+        productmobiletemplate = Mobiletemplate.objects.all()
+        productdesktoptemplate = Desktoptemplate.objects.all()
+        productmirosofttemplate = Microsofttemplate.objects.all()
+        productadobetemplate = Adobetemplate.objects.all()
+    
+    # Create context outside the if-else
+    context = {
+        'productproject': productproject,
+        'productimage': productimage,
+        'productbook': productbook,
+        'productprintable': productprintable,
+        'productmusic': productmusic,
+        'productmultmedia': productmultmedia,
+        'productdigitalart': productdigitalart,
+        'productcad': productcad,
+        'productsoftware': productsoftware,
+        'productbusiness': productbusiness,
+        'productwebsitetemplate': productwebsitetemplate,
+        'productmobiletemplate': productmobiletemplate,
+        'productdesktoptemplate': productdesktoptemplate,
+        'productmirosofttemplate': productmirosofttemplate,
+        'productadobetemplate': productadobetemplate,
+    }
+
+    return render(request, 'web/allproduct.html', context)
+
 
 # FOR SUBSCRIBERS
 def subscription(request):
