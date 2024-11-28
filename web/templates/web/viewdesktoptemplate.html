@@ -272,8 +272,8 @@
                         <!-- Single Widget -->
                         <div class="widget search-widget">
                             <h5 class="widget-title">Search Here</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Search Here...">
+                            <form method="get" action="{% url 'search_all_product' %}">
+                                <input type="text" placeholder="Search Here..." name="q">
                                 <button type="submit"><i class="lni lni-search-alt"></i></button>
                             </form>
                         </div>

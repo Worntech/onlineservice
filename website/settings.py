@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'web.middleware.DisableBrowserCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -150,8 +151,8 @@ PESAPAL_OAUTH_SIGNATURE_METHOD = "SignatureMethod_HMAC_SHA1"
 PESAPAL_TRANSACTION_FAILED_REDIRECT_URL = ""
 PESAPAL_ITEM_DESCRIPTION = True
 PESAPAL_TRANSACTION_MODEL = "django_pesapal.Transaction"
-PESAPAL_CONSUMER_KEY = "XUuDdx+FvdDMgBk/BKvA+9AFjq0xMCLM"
-PESAPAL_CONSUMER_SECRET = "K+08ggQ+QEXbxrjEWzffWtzofiI="
+PESAPAL_CONSUMER_KEY = "Z1j+oVmK9LCODN/XrtckXf/lrBFgolr1"
+PESAPAL_CONSUMER_SECRET = "ucOH6xbNhRfpXLPcYgHGvl5OX2Y="
 # Override pesapal keys
 
 # try:

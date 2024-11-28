@@ -6667,9 +6667,9 @@ ul.custom-flex {
     .navbar-brand img {
         width: 130px;
     }
-    .header .search-form {
+    /* .header .search-form {
         display: none !important;
-    }
+    } */
     .hero-area .hero-inner {
         height: auto;
         padding-bottom: 120px;
@@ -7150,9 +7150,9 @@ ul.custom-flex {
     .header .logo img {
         width: 150px;
     }
-    .header .search-form {
+    /* .header .search-form {
         display: none !important;
-    }
+    } */
     .hero-area .hero-inner {
         height: auto;
         padding-bottom: 110px !important;
