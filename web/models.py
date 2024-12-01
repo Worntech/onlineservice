@@ -9,6 +9,8 @@ from django.utils.text import slugify
 import uuid
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # user table--------------------------------------------------------------------
@@ -277,7 +279,27 @@ class Project(models.Model):
     Project = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    
+
+class ReviewProject(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
+      
 class Commentproject(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -295,6 +317,26 @@ class Image(models.Model):
     Image_download = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewImage(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Image', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Commentimage(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -374,6 +416,26 @@ class Book(models.Model):
     Book = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewBook(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Commentbook(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -403,6 +465,26 @@ class Printable(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewPrintable(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Printable', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Commentprintable(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -450,6 +532,26 @@ class Music(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewMusic(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Music', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Commentmusic(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -531,6 +633,26 @@ class Multimedia(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewMultimedia(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Multimedia', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Commentmultimedia(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -626,6 +748,26 @@ class DigitalArt(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewDigitalArt(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('DigitalArt', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class CommentdigitalArt(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -726,6 +868,26 @@ class CAD(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewCAD(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('CAD', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class CommentCAD(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -758,7 +920,27 @@ class Software(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    
+
+class ReviewSoftware(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Software', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
+      
 class Commentsoftware(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -790,6 +972,26 @@ class Business(models.Model):
     Product = models.FileField(upload_to="home/")
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+class ReviewBusiness(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Business', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Commentbusiness(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -840,6 +1042,26 @@ class Websitetemplate(models.Model):
             self.template_id = slugify(self.Title)[:20]  # Limit to first 20 characters to fit max_length
         super().save(*args, **kwargs)
 
+class ReviewWebsitetemplate(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Websitetemplate', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
+
 class Mobiletemplate(models.Model):
     template = (
 			('React native', 'React native'),
@@ -874,6 +1096,27 @@ class Mobiletemplate(models.Model):
             self.mobiletemplate_id = slugify(self.Title)[:20]  # Limit to first 20 characters to fit max_length
         super().save(*args, **kwargs)
 
+
+class ReviewMobiletemplate(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Mobiletemplate', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
+    
 class Desktoptemplate(models.Model):
     template = (
             ('Kivy', 'Kivy'),
@@ -902,6 +1145,26 @@ class Desktoptemplate(models.Model):
             self.template_id = slugify(self.Title)[:20]  # Limit to first 20 characters to fit max_length
         super().save(*args, **kwargs)
 
+class ReviewDesktoptemplate(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Desktoptemplate', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
+    
 class Microsofttemplate(models.Model):
     template = (
             ('word', 'word'),
@@ -924,6 +1187,26 @@ class Microsofttemplate(models.Model):
             # Generate a unique template_id based on the Title
             self.template_id = slugify(self.Title)[:20]  # Limit to first 20 characters to fit max_length
         super().save(*args, **kwargs)
+
+class ReviewMicrosofttemplate(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Microsofttemplate', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
     
 class Adobetemplate(models.Model):
     template = (
@@ -971,7 +1254,26 @@ class Adobetemplate(models.Model):
             self.template_id = slugify(self.Title)[:20]  # Limit to first 20 characters to fit max_length
         super().save(*args, **kwargs)
     
-    
+class ReviewAdobetemplate(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    template = models.ForeignKey('Adobetemplate', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)], 
+        help_text="Rate between 1 (worst) and 5 (best)"
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'template')  # Prevent duplicate reviews
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.rating}-star Review of {self.template.Title}"
+
+    def get_stars(self):
+        """Returns the rating in stars format."""
+        return "★" * self.rating + "☆" * (5 - self.rating)
+     
 # FOR TEMPLATE PAYMENT MODELS
 class Payment(models.Model):
     PAYMENT_STATUS_CHOICES = (

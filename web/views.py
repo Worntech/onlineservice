@@ -57,6 +57,8 @@ from django.views.decorators.cache import never_cache
 from web.middleware import disable_browser_cache
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
+from django.db.models import Avg, Count
+from math import floor
 
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView,
@@ -843,6 +845,13 @@ def illustrator(request):
 # @login_required(login_url='signin')
 def websiteproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -851,6 +860,13 @@ def websiteproject(request):
 # @login_required(login_url='signin')
 def mobileproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -859,6 +875,13 @@ def mobileproject(request):
 # @login_required(login_url='signin')
 def desktopproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -867,6 +890,13 @@ def desktopproject(request):
 # @login_required(login_url='signin')
 def artificialproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -875,6 +905,13 @@ def artificialproject(request):
 # @login_required(login_url='signin')
 def embededproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -883,6 +920,13 @@ def embededproject(request):
 # @login_required(login_url='signin')
 def iotproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -891,6 +935,13 @@ def iotproject(request):
 # @login_required(login_url='signin')
 def virtualrealityproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -899,6 +950,13 @@ def virtualrealityproject(request):
 # @login_required(login_url='signin')
 def cyberproject(request):
     project = Project.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in project:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "project":project
     }
@@ -907,6 +965,13 @@ def cyberproject(request):
 # @login_required(login_url='signin')
 def image(request):
     image = Image.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in image:
+        avg_rating = ReviewImage.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewImage.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "image":image
     }
@@ -920,6 +985,13 @@ def webtemplate(request):
 # @login_required(login_url='signin')
 def htmlcsstemplate(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate,
     }
@@ -928,6 +1000,13 @@ def htmlcsstemplate(request):
 # @login_required(login_url='signin')
 def reacttemplate(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -942,6 +1021,13 @@ def vueJs_template(request):
 
 def elm(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -949,6 +1035,13 @@ def elm(request):
 
 def swift(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -956,6 +1049,13 @@ def swift(request):
 
 def JQuery(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -963,6 +1063,13 @@ def JQuery(request):
 
 def flutter_template(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -970,6 +1077,13 @@ def flutter_template(request):
 
 def svelte(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -977,6 +1091,13 @@ def svelte(request):
 
 def materialize_CSS(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -984,6 +1105,13 @@ def materialize_CSS(request):
 
 def foundation(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -991,6 +1119,13 @@ def foundation(request):
 
 def angular_template(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -998,6 +1133,13 @@ def angular_template(request):
 
 def tailwind_CSS(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -1005,6 +1147,13 @@ def tailwind_CSS(request):
 
 def bootstrap_template(request):
     websitetemplate = Websitetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in websitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "websitetemplate":websitetemplate
     }
@@ -1018,6 +1167,13 @@ def mobiletemplate(request):
 # @login_required(login_url='signin')
 def reactnativetemplate(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1025,6 +1181,13 @@ def reactnativetemplate(request):
 
 def flutter_mobile_template(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1032,6 +1195,13 @@ def flutter_mobile_template(request):
 
 def swiftUI(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1039,6 +1209,13 @@ def swiftUI(request):
 
 def jetpack_Compose(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1046,6 +1223,13 @@ def jetpack_Compose(request):
 
 def ionic_Framework(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1053,6 +1237,13 @@ def ionic_Framework(request):
 
 def xamarin(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1060,6 +1251,13 @@ def xamarin(request):
 
 def phoneGap(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1067,6 +1265,13 @@ def phoneGap(request):
 
 def nativeScript(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1074,6 +1279,13 @@ def nativeScript(request):
 
 def framework_seven(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1081,6 +1293,13 @@ def framework_seven(request):
 
 def onsen_UI(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1088,6 +1307,13 @@ def onsen_UI(request):
 
 def jQuery_Mobile(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1095,6 +1321,13 @@ def jQuery_Mobile(request):
 
 def sencha_Touch(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1102,6 +1335,13 @@ def sencha_Touch(request):
 
 def Kivy_template(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1109,6 +1349,13 @@ def Kivy_template(request):
 
 def bootstrap_Mobile_Templates(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1116,6 +1363,13 @@ def bootstrap_Mobile_Templates(request):
 
 def quasar_Framework(request):
     mobiletemplate = Mobiletemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in mobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "mobiletemplate":mobiletemplate
     }
@@ -1129,6 +1383,13 @@ def desktoptemplate(request):
 # @login_required(login_url='signin')
 def kivytemplate(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1136,7 +1397,15 @@ def kivytemplate(request):
 
 # @login_required(login_url='signin')
 def pyqttemplate(request):
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1145,6 +1414,13 @@ def pyqttemplate(request):
 # @login_required(login_url='signin')
 def ctemplate(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1153,6 +1429,12 @@ def ctemplate(request):
 # @login_required(login_url='signin')
 def tkintertemplate(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    for template in desktoptemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1161,6 +1443,13 @@ def tkintertemplate(request):
 # second now continue
 def chashdesktopapp(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1168,6 +1457,13 @@ def chashdesktopapp(request):
 
 def javadesktopapp(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1175,6 +1471,13 @@ def javadesktopapp(request):
 
 def cplusdesktopapp(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1182,6 +1485,13 @@ def cplusdesktopapp(request):
 
 def electrondesktopapp(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1189,6 +1499,13 @@ def electrondesktopapp(request):
 
 def swiftdesktopapp(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1196,6 +1513,13 @@ def swiftdesktopapp(request):
 
 def rustdesktopapp(request):
     desktoptemplate = Desktoptemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in desktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "desktoptemplate":desktoptemplate
     }
@@ -1209,6 +1533,13 @@ def microsofttemplate(request):
 # @login_required(login_url='signin')
 def wordtemplate(request):
     microsofttemplate = Microsofttemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in microsofttemplate:
+        avg_rating = ReviewMicrosofttemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMicrosofttemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "microsofttemplate":microsofttemplate
     }
@@ -1217,6 +1548,13 @@ def wordtemplate(request):
 # @login_required(login_url='signin')
 def excelltemplate(request):
     microsofttemplate = Microsofttemplate.objects.order_by('?')
+    
+     # Prepare data for each template
+    for template in microsofttemplate:
+        avg_rating = ReviewMicrosofttemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMicrosofttemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "microsofttemplate":microsofttemplate
     }
@@ -1225,6 +1563,13 @@ def excelltemplate(request):
 # @login_required(login_url='signin')
 def powerpointtemplate(request):
     microsofttemplate = Microsofttemplate.objects.order_by('?')
+    
+     # Prepare data for each template
+    for template in microsofttemplate:
+        avg_rating = ReviewMicrosofttemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMicrosofttemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "microsofttemplate":microsofttemplate
     }
@@ -1233,6 +1578,13 @@ def powerpointtemplate(request):
 # @login_required(login_url='signin')
 def publishertemplate(request):
     microsofttemplate = Microsofttemplate.objects.order_by('?')
+    
+     # Prepare data for each template
+    for template in microsofttemplate:
+        avg_rating = ReviewMicrosofttemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMicrosofttemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "microsofttemplate":microsofttemplate
     }
@@ -1246,6 +1598,13 @@ def adobetemplate(request):
 # @login_required(login_url='signin')
 def photoshoptemplate(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1254,6 +1613,13 @@ def photoshoptemplate(request):
 # @login_required(login_url='signin')
 def primiertemplate(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1262,6 +1628,13 @@ def primiertemplate(request):
 # @login_required(login_url='signin')
 def illustratortemplate(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1270,30 +1643,65 @@ def illustratortemplate(request):
 
 def InDesignadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/InDesignadobe.html',context)
 def XDadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/XDadobe.html',context)
 def Lightroomadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Lightroomadobe.html',context)
 def LightroomClassicadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/LightroomClassicadobe.html',context)
 def AfterEffectsadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1301,30 +1709,65 @@ def AfterEffectsadobe(request):
 
 def Animateadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Animateadobe.html',context)
 def Dreamweaveradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Dreamweaveradobe.html',context)
 def Auditionadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Auditionadobe.html',context)
 def Bridgeadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Bridgeadobe.html',context)
 def Dimensionadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1332,30 +1775,65 @@ def Dimensionadobe(request):
 
 def Frescoadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Frescoadobe.html',context)
 def CharacterAnimatoradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/CharacterAnimatoradobe.html',context)
 def MediaEncoderadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/MediaEncoderadobe.html',context)
 def Rushadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Rushadobe.html',context)
 def Sparkadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1363,30 +1841,65 @@ def Sparkadobe(request):
 
 def Substance3DPainteradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Substance3DPainteradobe.html',context)
 def Substance3DDesigneradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Substance3DDesigneradobe.html',context)
 def Substance3DSampleradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Substance3DSampleradobe.html',context)
 def Substance3DStageradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Substance3DStageradobe.html',context)
 def AcrobatProDCadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1394,24 +1907,52 @@ def AcrobatProDCadobe(request):
 
 def Signadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Signadobe.html',context)
 def FrameMakeradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/FrameMakeradobe.html',context)
 def Engageadobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
     return render(request, 'web/Engageadobe.html',context)
 def Presenteradobe(request):
     adobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in adobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "adobetemplate":adobetemplate
     }
@@ -1420,6 +1961,13 @@ def Presenteradobe(request):
 # FOR BOOK
 def novels(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1427,6 +1975,13 @@ def novels(request):
 
 def short_stories(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1434,6 +1989,13 @@ def short_stories(request):
 
 def poetry(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1441,6 +2003,13 @@ def poetry(request):
 
 def flash_fiction(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1448,6 +2017,13 @@ def flash_fiction(request):
 
 def self_help_book(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1455,6 +2031,13 @@ def self_help_book(request):
 
 def biographies(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1462,6 +2045,13 @@ def biographies(request):
 
 def personal_development_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1469,6 +2059,13 @@ def personal_development_books(request):
 
 def history_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1476,6 +2073,13 @@ def history_books(request):
 
 def true_crime(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1483,6 +2087,13 @@ def true_crime(request):
 
 def textbooks(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1490,6 +2101,13 @@ def textbooks(request):
 
 def research_papers(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1497,6 +2115,13 @@ def research_papers(request):
 
 def study_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1504,6 +2129,13 @@ def study_guides(request):
 
 def how_to_guides_tutorials(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1511,6 +2143,13 @@ def how_to_guides_tutorials(request):
 
 def business_strategy_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1518,6 +2157,13 @@ def business_strategy_guides(request):
 
 def marketing_and_sales_e_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1525,6 +2171,13 @@ def marketing_and_sales_e_books(request):
 
 def entrepreneurship_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1532,6 +2185,13 @@ def entrepreneurship_guides(request):
 
 def financial_planning(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1539,6 +2199,13 @@ def financial_planning(request):
 
 def nutrition_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1546,6 +2213,13 @@ def nutrition_guides(request):
 
 def workout_and_fitness_plans(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1553,6 +2227,13 @@ def workout_and_fitness_plans(request):
 
 def mental_health_wellness(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1560,6 +2241,13 @@ def mental_health_wellness(request):
 
 def meditation_and_mindfulness_e_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1567,6 +2255,13 @@ def meditation_and_mindfulness_e_books(request):
 
 def coding_and_programming_tutorials(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1574,6 +2269,13 @@ def coding_and_programming_tutorials(request):
 
 def software_manuals(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1581,6 +2283,13 @@ def software_manuals(request):
 
 def IT_and_networking_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1588,6 +2297,13 @@ def IT_and_networking_guides(request):
 
 def artificial_intelligence_machine_learning(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1595,6 +2311,13 @@ def artificial_intelligence_machine_learning(request):
 
 def photography_tutorials(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1602,6 +2325,13 @@ def photography_tutorials(request):
 
 def painting_and_drawing_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1609,6 +2339,13 @@ def painting_and_drawing_guides(request):
 
 def writing_and_storytelling_techniques(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1616,6 +2353,13 @@ def writing_and_storytelling_techniques(request):
 
 def crafting_DIY_projects(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1623,6 +2367,13 @@ def crafting_DIY_projects(request):
 
 def recipe_collections(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1630,6 +2381,13 @@ def recipe_collections(request):
 
 def specialized_diet_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1637,6 +2395,13 @@ def specialized_diet_guides(request):
 
 def meal_planning_and_prep(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1644,6 +2409,13 @@ def meal_planning_and_prep(request):
 
 def parenting_advice(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1651,6 +2423,13 @@ def parenting_advice(request):
 
 def marriage_and_relationship_counseling(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1658,6 +2437,13 @@ def marriage_and_relationship_counseling(request):
 
 def family_planning_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1665,6 +2451,13 @@ def family_planning_guides(request):
 
 def childcare_and_development(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1672,6 +2465,13 @@ def childcare_and_development(request):
 
 def travel_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1679,6 +2479,13 @@ def travel_guides(request):
 
 def destination_reviews(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1686,6 +2493,13 @@ def destination_reviews(request):
 
 def adventure_stories(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1693,6 +2507,13 @@ def adventure_stories(request):
 
 def travel_planning_and_budgeting(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1700,6 +2521,13 @@ def travel_planning_and_budgeting(request):
 
 def personal_finance_e_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1707,6 +2535,13 @@ def personal_finance_e_books(request):
 
 def investment_strategies(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1714,6 +2549,13 @@ def investment_strategies(request):
 
 def retirement_planning(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1721,6 +2563,13 @@ def retirement_planning(request):
 
 def budgeting_tips(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1728,6 +2577,13 @@ def budgeting_tips(request):
 
 def religious_texts(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1735,6 +2591,13 @@ def religious_texts(request):
 
 def spiritual_growth_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1742,6 +2605,13 @@ def spiritual_growth_guides(request):
 
 def meditation_and_mindfulness_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1749,6 +2619,13 @@ def meditation_and_mindfulness_books(request):
 
 def philosophy_and_life_purpose_e_books(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1756,6 +2633,13 @@ def philosophy_and_life_purpose_e_books(request):
 
 def time_management_and_productivity(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1763,6 +2647,13 @@ def time_management_and_productivity(request):
 
 def self_improvement_and_motivation(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1770,6 +2661,13 @@ def self_improvement_and_motivation(request):
 
 def life_coaching_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1777,6 +2675,13 @@ def life_coaching_guides(request):
 
 def work_life_balance(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1784,6 +2689,13 @@ def work_life_balance(request):
 
 def legal_guides_and_contracts(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1791,6 +2703,13 @@ def legal_guides_and_contracts(request):
 
 def HR_and_employment_handbooks(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1798,6 +2717,13 @@ def HR_and_employment_handbooks(request):
 
 def professional_development(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1805,6 +2731,13 @@ def professional_development(request):
 
 def real_estate_investment_guides(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1812,6 +2745,13 @@ def real_estate_investment_guides(request):
 
 def property_management_manuals(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1819,6 +2759,13 @@ def property_management_manuals(request):
 
 def buying_and_selling_homes(request):
     product = Book.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1829,6 +2776,13 @@ def buying_and_selling_homes(request):
 # FOR Music & Audio
 def single_tracks(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1837,6 +2791,13 @@ def single_tracks(request):
 
 def full_albums(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1844,6 +2805,13 @@ def full_albums(request):
 
 def extended_plays(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1851,6 +2819,13 @@ def extended_plays(request):
 
 def instrumental_versions(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1858,6 +2833,13 @@ def instrumental_versions(request):
 
 def beats_for_rappers_and_singers(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1865,6 +2847,13 @@ def beats_for_rappers_and_singers(request):
 
 def lo_fi_beats(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1872,6 +2861,13 @@ def lo_fi_beats(request):
 
 def background_instrumentals_for_videos(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1879,6 +2875,13 @@ def background_instrumentals_for_videos(request):
 
 def royalty_free_music(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1886,6 +2889,13 @@ def royalty_free_music(request):
 
 def environmental_sounds(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1893,6 +2903,13 @@ def environmental_sounds(request):
 
 def foley_sounds(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1900,6 +2917,13 @@ def foley_sounds(request):
 
 def sci_fi_and_futuristic_sounds(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1907,6 +2931,13 @@ def sci_fi_and_futuristic_sounds(request):
 
 def horror_and_thriller_effects(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1914,6 +2945,13 @@ def horror_and_thriller_effects(request):
 
 def drum_loops(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1921,6 +2959,13 @@ def drum_loops(request):
 
 def melodic_loops(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1928,6 +2973,13 @@ def melodic_loops(request):
 
 def vocal_samples(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1935,6 +2987,13 @@ def vocal_samples(request):
 
 def synth_and_bass_loops(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1943,6 +3002,13 @@ def synth_and_bass_loops(request):
 
 def background_music_for_videos(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1950,6 +3016,13 @@ def background_music_for_videos(request):
 
 def music_for_podcasts(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1957,6 +3030,13 @@ def music_for_podcasts(request):
 
 def royalty_free_soundtracks_for_commercials(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1964,6 +3044,13 @@ def royalty_free_soundtracks_for_commercials(request):
 
 def ambient_music_for_relaxation_and_meditation(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1971,6 +3058,13 @@ def ambient_music_for_relaxation_and_meditation(request):
 
 def talk_shows(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1978,6 +3072,13 @@ def talk_shows(request):
 
 def interview_series(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1985,6 +3086,13 @@ def interview_series(request):
 
 def educational_podcasts(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1992,6 +3100,13 @@ def educational_podcasts(request):
 
 def storytelling_and_fictional_audio_series(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -1999,6 +3114,13 @@ def storytelling_and_fictional_audio_series(request):
 
 def nature_inspired_soundscapes(request):
     product = Music.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2008,6 +3130,13 @@ def nature_inspired_soundscapes(request):
 # FOR Videos & Multimedia
 def nature_and_landscape_footage(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2015,6 +3144,13 @@ def nature_and_landscape_footage(request):
 
 def urban_and_city_life_footage(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2022,6 +3158,13 @@ def urban_and_city_life_footage(request):
 
 def aerial_drone_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2029,6 +3172,13 @@ def aerial_drone_videos(request):
 
 def slow_motion_and_time_lapse_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2036,6 +3186,13 @@ def slow_motion_and_time_lapse_videos(request):
 
 def intros_and_outros_for_YouTube_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2043,6 +3200,13 @@ def intros_and_outros_for_YouTube_videos(request):
 
 def two_animations(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2050,6 +3214,13 @@ def two_animations(request):
 
 def three_animations(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2057,6 +3228,13 @@ def three_animations(request):
 
 def explainer_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2064,6 +3242,13 @@ def explainer_videos(request):
 
 def motion_graphics_for_commercials(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2071,6 +3256,13 @@ def motion_graphics_for_commercials(request):
 
 def personal_vlogs(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2078,6 +3270,13 @@ def personal_vlogs(request):
 
 def travel_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2085,6 +3284,13 @@ def travel_videos(request):
 
 def lifestyl_vlogs(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2092,6 +3298,13 @@ def lifestyl_vlogs(request):
 
 def daily_video_blogs(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2099,6 +3312,13 @@ def daily_video_blogs(request):
 
 def wedding_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2106,6 +3326,13 @@ def wedding_videos(request):
 
 def corporate_event_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2113,6 +3340,13 @@ def corporate_event_videos(request):
 
 def party_and_celebration_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2120,6 +3354,13 @@ def party_and_celebration_videos(request):
 
 def award_ceremony_Video(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2127,6 +3368,13 @@ def award_ceremony_Video(request):
 
 def business_presentations(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2134,6 +3382,13 @@ def business_presentations(request):
 
 def sales_pitches(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2141,6 +3396,13 @@ def sales_pitches(request):
 
 def educational_or_academic_presentations(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2148,6 +3410,13 @@ def educational_or_academic_presentations(request):
 
 def product_promo_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2155,6 +3424,13 @@ def product_promo_videos(request):
 
 def service_advertisement_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2162,6 +3438,13 @@ def service_advertisement_videos(request):
 
 def brand_story_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2169,6 +3452,13 @@ def brand_story_videos(request):
 
 def social_media_ads(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2176,6 +3466,13 @@ def social_media_ads(request):
 
 def official_music_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2183,6 +3480,13 @@ def official_music_videos(request):
 
 def lyric_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2190,6 +3494,13 @@ def lyric_videos(request):
 
 def animated_music_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2197,6 +3508,13 @@ def animated_music_videos(request):
 
 def performance_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2204,6 +3522,13 @@ def performance_videos(request):
 
 def fiction_short_films(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2211,6 +3536,13 @@ def fiction_short_films(request):
 
 def mini_documentaries(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2218,6 +3550,13 @@ def mini_documentaries(request):
 
 def biographical_documentaries(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2225,6 +3564,13 @@ def biographical_documentaries(request):
 
 def indie_films(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2232,6 +3578,13 @@ def indie_films(request):
 
 def adventure_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2239,6 +3592,13 @@ def adventure_videos(request):
 
 def interactive_tutorials(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2246,6 +3606,13 @@ def interactive_tutorials(request):
 
 def interactive_quizzes_or_assessments(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2255,126 +3622,273 @@ def interactive_quizzes_or_assessments(request):
 
 def gamified_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/gamified_videos.html',context)
 def customer_testimonial_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/customer_testimonial_videos.html',context)
 def product_review_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/product_review_videos.html',context)
 def user_generated_content_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/user_generated_content_videos.html',context)
 def virtual_reality_experiences(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/virtual_reality_experiences.html',context)
 def degree_video_tours(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/degree_video_tours.html',context)
 def immersive_event_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/immersive_event_videos.html',context)
 def cinematic_sequences(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/cinematic_sequences.html',context)
 def aerial_drone_footage(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/aerial_drone_footage.html',context)
 def scenic_landscape_shots(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/scenic_landscape_shots.html',context)
 def epic_slow_motion_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/epic_slow_motion_videos.html',context)
 def urban_timelapse_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/urban_timelapse_videos.html',context)
 def nature_and_sky_timelapse(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/nature_and_sky_timelapse.html',context)
 def construction_progress_timelapse(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/construction_progress_timelapse.html',context)
 def yoga_and_meditation_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/yoga_and_meditation_videos.html',context)
 def healthy_lifestyle_tips(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/healthy_lifestyle_tips.html',context)
 def exercise_and_wellness_programs(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/exercise_and_wellness_programs.html',context)
 def product_feature_demonstrations(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/product_feature_demonstrations.html',context)
 def physical_product_unboxing_and_reviews(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/physical_product_unboxing_and_reviews.html',context)
 def animated_YouTube_intros(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
     return render(request, 'web/animated_YouTube_intros.html',context)
 def branding_outros_for_videos(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2382,6 +3896,13 @@ def branding_outros_for_videos(request):
 
 def social_media_content_intros(request):
     product = Multimedia.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2394,6 +3915,13 @@ def social_media_content_intros(request):
 #  FOR Digital Art & Design
 def hand_drawn_digital_illustrations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2401,6 +3929,13 @@ def hand_drawn_digital_illustrations(request):
 
 def character_design(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2408,6 +3943,13 @@ def character_design(request):
 
 def website_design_templates(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2415,6 +3957,13 @@ def website_design_templates(request):
 
 def mobile_app_design_templates(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2422,6 +3971,13 @@ def mobile_app_design_templates(request):
 
 def editorial_illustrations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2429,6 +3985,13 @@ def editorial_illustrations(request):
 
 def children_book_illustrations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2436,6 +3999,13 @@ def children_book_illustrations(request):
 
 def posters(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2443,6 +4013,13 @@ def posters(request):
 
 def flyers(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2450,6 +4027,13 @@ def flyers(request):
 
 def brochures(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2457,6 +4041,13 @@ def brochures(request):
 
 def infographics(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2464,6 +4055,13 @@ def infographics(request):
 
 def digital_advertisements(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2471,6 +4069,13 @@ def digital_advertisements(request):
 
 def brand_logos(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2478,6 +4083,13 @@ def brand_logos(request):
 
 def icon_sets(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2485,6 +4097,13 @@ def icon_sets(request):
 
 def custom_logos_for_businesses(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2492,6 +4111,13 @@ def custom_logos_for_businesses(request):
 
 def monograms(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2499,6 +4125,13 @@ def monograms(request):
 
 def scalable_vector_illustrations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2506,6 +4139,13 @@ def scalable_vector_illustrations(request):
 
 def flat_design_elements(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2513,6 +4153,13 @@ def flat_design_elements(request):
 
 def icons_and_symbols(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2520,6 +4167,13 @@ def icons_and_symbols(request):
 
 def geometric_patterns(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2527,6 +4181,13 @@ def geometric_patterns(request):
 
 def three_models(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2534,6 +4195,13 @@ def three_models(request):
 
 def three_character_design(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2541,6 +4209,13 @@ def three_character_design(request):
 
 def product_visualizations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2548,6 +4223,13 @@ def product_visualizations(request):
 
 def custom_fonts(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2555,6 +4237,13 @@ def custom_fonts(request):
 
 def hand_lettering_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2562,6 +4251,13 @@ def hand_lettering_designs(request):
 
 def calligraphy_artwork(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2569,6 +4265,13 @@ def calligraphy_artwork(request):
 
 def display_typefaces(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2576,6 +4279,13 @@ def display_typefaces(request):
 
 def wireframe_kits(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2583,6 +4293,13 @@ def wireframe_kits(request):
 
 def prototype_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2590,6 +4307,13 @@ def prototype_designs(request):
 
 def interactive_mockups(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2597,6 +4321,13 @@ def interactive_mockups(request):
 
 def business_cards(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2604,6 +4335,13 @@ def business_cards(request):
 
 def wedding_invitations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2611,6 +4349,13 @@ def wedding_invitations(request):
 
 def greeting_cards(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2618,6 +4363,13 @@ def greeting_cards(request):
 
 def calendars(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2625,6 +4377,13 @@ def calendars(request):
 
 def planners(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2632,6 +4391,13 @@ def planners(request):
 
 def seamless_patterns(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2639,6 +4405,13 @@ def seamless_patterns(request):
 
 def textile_and_fabric_patterns(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2646,6 +4419,13 @@ def textile_and_fabric_patterns(request):
 
 def wallpaper_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2653,6 +4433,13 @@ def wallpaper_designs(request):
 
 def packaging_patterns(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2660,6 +4447,13 @@ def packaging_patterns(request):
 
 def UI_UX_icons(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2667,6 +4461,13 @@ def UI_UX_icons(request):
 
 def app_icons(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2674,6 +4475,13 @@ def app_icons(request):
 
 def social_media_icons(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2681,6 +4489,13 @@ def social_media_icons(request):
 
 def custom_icon_sets_for_websites(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2688,6 +4503,13 @@ def custom_icon_sets_for_websites(request):
 
 def realistic_portrait_paintings(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2695,6 +4517,13 @@ def realistic_portrait_paintings(request):
 
 def fantasy_landscape_paintings(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2702,6 +4531,13 @@ def fantasy_landscape_paintings(request):
 
 def Concept_art_for_games_or_films(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2709,6 +4545,13 @@ def Concept_art_for_games_or_films(request):
 
 def abstract_digital_artwork(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2716,6 +4559,13 @@ def abstract_digital_artwork(request):
 
 def composite_photo_art(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2723,6 +4573,13 @@ def composite_photo_art(request):
 
 def surreal_photo_manipulations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2730,6 +4587,13 @@ def surreal_photo_manipulations(request):
 
 def product_photo_retouching(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2738,6 +4602,13 @@ def product_photo_retouching(request):
 
 def fashion_and_beauty_retouching(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2745,6 +4616,13 @@ def fashion_and_beauty_retouching(request):
 
 def digital_collages(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2752,6 +4630,13 @@ def digital_collages(request):
 
 def mixed_media_art(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2759,6 +4644,13 @@ def mixed_media_art(request):
 
 def scrapbook_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2766,6 +4658,13 @@ def scrapbook_designs(request):
 
 def character_concept_art(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2773,6 +4672,13 @@ def character_concept_art(request):
 
 def creature_and_monster_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2780,6 +4686,13 @@ def creature_and_monster_designs(request):
 
 def storyboard_art(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2787,6 +4700,13 @@ def storyboard_art(request):
 
 def comic_book_illustrations(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2794,6 +4714,13 @@ def comic_book_illustrations(request):
 
 def manga_style_characters_and_story_panels(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2801,6 +4728,13 @@ def manga_style_characters_and_story_panels(request):
 
 def digital_comic_strips(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2808,6 +4742,13 @@ def digital_comic_strips(request):
 
 def t_shirt_graphics_and_mockups(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2815,6 +4756,13 @@ def t_shirt_graphics_and_mockups(request):
 
 def custom_merchandise_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2822,6 +4770,13 @@ def custom_merchandise_designs(request):
 
 def apparel_patterns_and_prints(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2829,6 +4784,13 @@ def apparel_patterns_and_prints(request):
 
 def themed_photo_collections(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2836,6 +4798,13 @@ def themed_photo_collections(request):
 
 def high_resolution_stock_images(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2843,6 +4812,13 @@ def high_resolution_stock_images(request):
 
 def conceptual_photography(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2850,6 +4826,13 @@ def conceptual_photography(request):
 
 def art_prints_for_home_decor(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2857,6 +4840,13 @@ def art_prints_for_home_decor(request):
 
 def motivational_posters(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2864,6 +4854,13 @@ def motivational_posters(request):
 
 def abstract_and_minimalist_art(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2871,6 +4868,13 @@ def abstract_and_minimalist_art(request):
 
 def instagram_post_templates(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2880,6 +4884,13 @@ def instagram_post_templates(request):
 
 def facebook_banner_designs(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2887,6 +4898,13 @@ def facebook_banner_designs(request):
 
 def pinterest_graphic_templates(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2894,6 +4912,13 @@ def pinterest_graphic_templates(request):
 
 def story_highlight_icons(request):
     product = DigitalArt.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2903,6 +4928,13 @@ def story_highlight_icons(request):
 # 3D & CAD Designs
 def character_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2910,6 +4942,13 @@ def character_models(request):
 
 def vehicle_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2917,6 +4956,13 @@ def vehicle_models(request):
 
 def furniture_and_home_decor_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2924,6 +4970,13 @@ def furniture_and_home_decor_models(request):
 
 def product_prototypes(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2931,6 +4984,13 @@ def product_prototypes(request):
 
 def house_and_building_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2938,6 +4998,13 @@ def house_and_building_designs(request):
 
 def interior_and_exterior_architectural_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2945,6 +5012,13 @@ def interior_and_exterior_architectural_models(request):
 
 def floor_plans_and_layouts(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2952,6 +5026,13 @@ def floor_plans_and_layouts(request):
 
 def urban_planning_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2959,6 +5040,13 @@ def urban_planning_models(request):
 
 def architectural_renderings(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2966,6 +5054,13 @@ def architectural_renderings(request):
 
 def toys_and_figurines(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2973,6 +5068,13 @@ def toys_and_figurines(request):
 
 def custom_jewelry_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2980,6 +5082,13 @@ def custom_jewelry_designs(request):
 
 def gadgets_and_accessories(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2987,6 +5096,13 @@ def gadgets_and_accessories(request):
 
 def home_decor_and_functional_objects(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -2994,6 +5110,13 @@ def home_decor_and_functional_objects(request):
 
 def mechanical_part_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3001,6 +5124,13 @@ def mechanical_part_designs(request):
 
 def industrial_equipment_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3008,6 +5138,13 @@ def industrial_equipment_models(request):
 
 def engineering_diagrams(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3015,6 +5152,13 @@ def engineering_diagrams(request):
 
 def CNC_and_laser_cutting_templates(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3022,6 +5166,13 @@ def CNC_and_laser_cutting_templates(request):
 
 def modern_and_classic_furniture_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3029,6 +5180,13 @@ def modern_and_classic_furniture_models(request):
 
 def kitchen_and_bathroom_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3036,6 +5194,13 @@ def kitchen_and_bathroom_designs(request):
 
 def custom_cabinetry_and_shelving_units(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3043,6 +5208,13 @@ def custom_cabinetry_and_shelving_units(request):
 
 def threed_room_and_space_layouts(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3050,6 +5222,13 @@ def threed_room_and_space_layouts(request):
 
 def consumer_electronics_prototypes(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3057,6 +5236,13 @@ def consumer_electronics_prototypes(request):
 
 def fashion_and_accessory_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3064,6 +5250,13 @@ def fashion_and_accessory_designs(request):
 
 def home_appliance_prototypes(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3071,6 +5264,13 @@ def home_appliance_prototypes(request):
 
 def wearable_technology_prototypes(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3078,6 +5278,13 @@ def wearable_technology_prototypes(request):
 
 def threed_characters_and_creatures(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3085,6 +5292,13 @@ def threed_characters_and_creatures(request):
 
 def environmental_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3092,6 +5306,13 @@ def environmental_models(request):
 
 def wweapons_and_gear(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3099,6 +5320,13 @@ def wweapons_and_gear(request):
 
 def vehicle_models_for_gaming(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3106,6 +5334,13 @@ def vehicle_models_for_gaming(request):
 
 def anatomy_and_body_part_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3113,6 +5348,13 @@ def anatomy_and_body_part_models(request):
 
 def molecular_and_chemical_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3120,6 +5362,13 @@ def molecular_and_chemical_models(request):
 
 def medical_equipment_and_device_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3127,6 +5376,13 @@ def medical_equipment_and_device_designs(request):
 
 def scientific_visualization_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3134,6 +5390,13 @@ def scientific_visualization_models(request):
 
 def car_and_truck_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3141,6 +5404,13 @@ def car_and_truck_models(request):
 
 def aircraft_and_drone_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3148,6 +5418,13 @@ def aircraft_and_drone_designs(request):
 
 def ship_and_boat_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3155,6 +5432,13 @@ def ship_and_boat_models(request):
 
 def public_transportation_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3162,6 +5446,13 @@ def public_transportation_models(request):
 
 def ring_and_earring_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3169,6 +5460,13 @@ def ring_and_earring_designs(request):
 
 def pendant_and_necklace_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3176,6 +5474,13 @@ def pendant_and_necklace_models(request):
 
 def custom_and_personalized_jewelry_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3183,6 +5488,13 @@ def custom_and_personalized_jewelry_designs(request):
 
 def threed_printable_jewelry_prototypes(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3190,6 +5502,13 @@ def threed_printable_jewelry_prototypes(request):
 
 def VR_ready_three_models_for_virtual_environments(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3197,6 +5516,13 @@ def VR_ready_three_models_for_virtual_environments(request):
 
 def AR_models_for_apps_and_interactive_experiences(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3204,6 +5530,13 @@ def AR_models_for_apps_and_interactive_experiences(request):
 
 def architectural_walkthroughs_for_VR(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3211,6 +5544,13 @@ def architectural_walkthroughs_for_VR(request):
 
 def heavy_machinery_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3218,6 +5558,13 @@ def heavy_machinery_models(request):
 
 def industrial_equipment(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3225,6 +5572,13 @@ def industrial_equipment(request):
 
 def mechanical_components_and_assemblies(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3232,6 +5586,13 @@ def mechanical_components_and_assemblies(request):
 
 def fantasy_and_sci_fi_character_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3239,6 +5600,13 @@ def fantasy_and_sci_fi_character_models(request):
 
 def cartoon_and_stylized_characters(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3246,6 +5614,13 @@ def cartoon_and_stylized_characters(request):
 
 def monster_and_creature_models_for_games_and_films(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3253,6 +5628,13 @@ def monster_and_creature_models_for_games_and_films(request):
 
 def A_threed_clothing_and_accessory_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3260,6 +5642,13 @@ def A_threed_clothing_and_accessory_models(request):
 
 def fashion_prototypes_for_manufacturing(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3267,6 +5656,13 @@ def fashion_prototypes_for_manufacturing(request):
 
 def shoe_and_bag_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3274,6 +5670,13 @@ def shoe_and_bag_designs(request):
 
 def fully_rigged_threed_characters_for_animation(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3281,6 +5684,13 @@ def fully_rigged_threed_characters_for_animation(request):
 
 def motion_capture_ready_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3288,6 +5698,13 @@ def motion_capture_ready_models(request):
 
 def custom_rigging_setups_for_specific_software(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3295,6 +5712,13 @@ def custom_rigging_setups_for_specific_software(request):
 
 def natural_landscapes(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3302,6 +5726,13 @@ def natural_landscapes(request):
 
 def city_and_urban_environments(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3309,6 +5740,13 @@ def city_and_urban_environments(request):
 
 def virtual_environments_for_games_and_simulations(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3316,6 +5754,13 @@ def virtual_environments_for_games_and_simulations(request):
 
 def engine_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3323,6 +5768,13 @@ def engine_models(request):
 
 def gear_and_mechanical_component_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3330,6 +5782,13 @@ def gear_and_mechanical_component_designs(request):
 
 def CAD_files_for_mechanical_systems(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3337,6 +5796,13 @@ def CAD_files_for_mechanical_systems(request):
 
 def DIY_assembly_instructions_for_furniture(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3344,6 +5810,13 @@ def DIY_assembly_instructions_for_furniture(request):
 
 def custom_furniture_designs_with_CAD_plans(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3351,6 +5824,13 @@ def custom_furniture_designs_with_CAD_plans(request):
 
 def CNC_cut_plans_for_modular_furniture(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3358,6 +5838,13 @@ def CNC_cut_plans_for_modular_furniture(request):
 
 def threed_models_of_props_for_film_sets(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3365,6 +5852,13 @@ def threed_models_of_props_for_film_sets(request):
 
 def sci_fi_or_fantasy_set_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3372,6 +5866,13 @@ def sci_fi_or_fantasy_set_designs(request):
 
 def historical_prop_replicas(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3379,6 +5880,13 @@ def historical_prop_replicas(request):
 
 def robot_design_and_assembly_plans(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3386,6 +5894,13 @@ def robot_design_and_assembly_plans(request):
 
 def drone_and_UAV_designs(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3393,6 +5908,13 @@ def drone_and_UAV_designs(request):
 
 def industrial_automation_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3400,6 +5922,13 @@ def industrial_automation_models(request):
 
 def A_threed_clothing_and_accessory_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3408,6 +5937,13 @@ def A_threed_clothing_and_accessory_models(request):
 
 def threed_floor_plans(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3415,6 +5951,13 @@ def threed_floor_plans(request):
 
 def interior_and_exterior_visualization(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3422,6 +5965,13 @@ def interior_and_exterior_visualization(request):
 
 def threed_topographical_maps(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3429,6 +5979,13 @@ def threed_topographical_maps(request):
 
 def terrain_models_for_games_and_simulations(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3436,6 +5993,13 @@ def terrain_models_for_games_and_simulations(request):
 
 def landscape_elevation_models(request):
     product = CAD.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3444,6 +6008,13 @@ def landscape_elevation_models(request):
 # Printable & Customizable Content
 def invitations_and_greeting_cards_templates(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3451,6 +6022,13 @@ def invitations_and_greeting_cards_templates(request):
 
 def business_cards_template(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3458,6 +6036,13 @@ def business_cards_template(request):
 
 def wedding_templates(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3465,6 +6050,13 @@ def wedding_templates(request):
 
 def digital_planners(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3472,6 +6064,13 @@ def digital_planners(request):
 
 def SEO_tools(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3479,6 +6078,13 @@ def SEO_tools(request):
 
 def email_marketing_templates(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3486,6 +6092,13 @@ def email_marketing_templates(request):
 
 def website_themes(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3493,6 +6106,13 @@ def website_themes(request):
 
 def custom_scripts(request):
     product = Printable.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3502,6 +6122,13 @@ def custom_scripts(request):
 # Software & Tools
 def software_applications(request):
     product = Software.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3509,6 +6136,13 @@ def software_applications(request):
 
 def plugins_and_extensions(request):
     product = Software.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3516,6 +6150,13 @@ def plugins_and_extensions(request):
 
 def architectural_plans(request):
     product = Software.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3523,6 +6164,13 @@ def architectural_plans(request):
 
 def mobile_apps(request):
     product = Software.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3530,6 +6178,13 @@ def mobile_apps(request):
 
 def software_as_a_Service(request):
     product = Software.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3537,6 +6192,13 @@ def software_as_a_Service(request):
 
 def copywriting_templates(request):
     product = Software.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3546,6 +6208,13 @@ def copywriting_templates(request):
 # Business & Marketing Tools
 def business_templates(request):
     product = Business.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBusiness.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBusiness.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3553,6 +6222,13 @@ def business_templates(request):
 
 def marketing_materials(request):
     product = Business.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBusiness.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBusiness.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3560,6 +6236,13 @@ def marketing_materials(request):
 
 def analytics_tools(request):
     product = Business.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBusiness.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBusiness.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3567,6 +6250,13 @@ def analytics_tools(request):
 
 def CRM_templates(request):
     product = Business.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in product:
+        avg_rating = ReviewBusiness.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBusiness.objects.filter(template=template).count()  # Total reviews
+        
     context={
         "product":product
     }
@@ -3588,6 +6278,84 @@ def allproduct(request):
     productdesktoptemplate = Desktoptemplate.objects.order_by('?')
     productmicrosofttemplate = Microsofttemplate.objects.order_by('?')
     productadobetemplate = Adobetemplate.objects.order_by('?')
+    
+    # Prepare data for each template
+    for template in productproject:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productimage:
+        avg_rating = ReviewImage.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewImage.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productbook:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productprintable:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmusic:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmultmedia:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productdigitalart:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productcad:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productsoftware:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productbusiness:
+        avg_rating = ReviewBusiness.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBusiness.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productwebsitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productdesktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmicrosofttemplate:
+        avg_rating = ReviewMicrosofttemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMicrosofttemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productadobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
+    
+    
     context={
         "productproject":productproject,
         "productimage":productimage,
@@ -4331,6 +7099,28 @@ class viewproject(DetailView):
                 return redirect(reverse('paymentproject', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewProject.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewproject", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4343,6 +7133,15 @@ class viewproject(DetailView):
             payment = PaymentProject.objects.filter(user=self.request.user, project=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewProject.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = Project.objects.order_by('?')[:3]
@@ -4391,6 +7190,10 @@ class viewproject(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -4432,6 +7235,28 @@ class viewbook(DetailView):
                 return redirect(reverse('paymentbook', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewBook.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewbook", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4444,6 +7269,15 @@ class viewbook(DetailView):
             payment = PaymentBook.objects.filter(user=self.request.user, book=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewBook.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
 
         # Get random product
         random_product = Book.objects.order_by('?')[:3]
@@ -4492,6 +7326,10 @@ class viewbook(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -4530,6 +7368,28 @@ class viewprintable(DetailView):
                 return redirect(reverse('paymentprintable', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewPrintable.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewprintable", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4542,6 +7402,15 @@ class viewprintable(DetailView):
             payment = PaymentPrintable.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewPrintable.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = Printable.objects.order_by('?')[:3]
@@ -4590,6 +7459,10 @@ class viewprintable(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -4628,6 +7501,28 @@ class viewmusic(DetailView):
                 return redirect(reverse('paymentmusic', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewMusic.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewmusic", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4640,6 +7535,15 @@ class viewmusic(DetailView):
             payment = PaymentMusic.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewMusic.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = Music.objects.order_by('?')[:3]
@@ -4688,6 +7592,10 @@ class viewmusic(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -4726,6 +7634,28 @@ class viewmultimedia(DetailView):
                 return redirect(reverse('paymentmultimedia', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewMultimedia.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewmultimedia", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4738,6 +7668,16 @@ class viewmultimedia(DetailView):
             payment = PaymentMultimedia.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewMultimedia.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
+                
                 
         # Get random product
         random_product = Multimedia.objects.order_by('?')[:3]
@@ -4786,6 +7726,10 @@ class viewmultimedia(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -4824,6 +7768,28 @@ class viewdigitalArt(DetailView):
                 return redirect(reverse('paymentdigitalArt', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewDigitalArt.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewdigitalArt", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4836,6 +7802,15 @@ class viewdigitalArt(DetailView):
             payment = PaymentDigitalArt.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewDigitalArt.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = DigitalArt.objects.order_by('?')[:3]
@@ -4884,6 +7859,10 @@ class viewdigitalArt(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -4922,6 +7901,28 @@ class viewCAD(DetailView):
                 return redirect(reverse('paymentcad', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewCAD.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewCAD", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -4934,6 +7935,15 @@ class viewCAD(DetailView):
             payment = PaymentCAD.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewCAD.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = CAD.objects.order_by('?')[:3]
@@ -4982,6 +7992,10 @@ class viewCAD(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -5020,6 +8034,28 @@ class viewsoftware(DetailView):
                 return redirect(reverse('paymentsoftware', kwargs={
                     'product_id': self.object.id,
                 }))
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewSoftware.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewsoftware", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -5032,6 +8068,15 @@ class viewsoftware(DetailView):
             payment = PaymentSoftware.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewSoftware.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = Software.objects.order_by('?')[:3]
@@ -5080,6 +8125,10 @@ class viewsoftware(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -5119,6 +8168,29 @@ class viewbusiness(DetailView):
                 return redirect(reverse('paymentbusiness', kwargs={
                     'product_id': self.object.id,
                 }))
+    
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewBusiness.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewbusiness", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -5131,6 +8203,15 @@ class viewbusiness(DetailView):
             payment = PaymentBusiness.objects.filter(user=self.request.user, product=self.object).last()
             if payment:
                 payment_status = payment.payment_status
+                
+        # Calculate average rating and count
+        reviews = ReviewBusiness.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
                 
         # Get random product
         random_product = Business.objects.order_by('?')[:3]
@@ -5180,6 +8261,10 @@ class viewbusiness(DetailView):
             'random_product': random_product,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -5219,6 +8304,29 @@ class viewimage(DetailView):
                 return redirect(reverse('paymentimage', kwargs={
                     'product_id': self.object.id,
                 }))
+
+        # Handle rating submission
+        elif 'rating' in request.POST:
+            rating = request.POST.get('rating')
+            if rating and rating.isdigit():
+                rating = int(rating)
+                if 1 <= rating <= 5:  # Validate the rating value
+                    review, created = ReviewImage.objects.get_or_create(
+                        user=request.user,
+                        template=self.object,  # Assuming the model matches Image
+                        defaults={'rating': rating}
+                    )
+                    if not created:
+                        # Update the rating if the review already exists
+                        review.rating = rating
+                        review.save()
+                    messages.success(request, "Your rating has been submitted.")
+                else:
+                    messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+            return redirect(reverse("viewimage", kwargs={'pk': self.object.pk}))
+
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -5232,6 +8340,15 @@ class viewimage(DetailView):
             if payment:
                 payment_status = payment.payment_status
         
+        # Calculate average rating and count
+        reviews = ReviewImage.objects.filter(template=self.object)
+        avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+        total_reviews = reviews.count()
+        
+        # Compute full stars and empty stars
+        full_stars = int(floor(avg_rating))
+        empty_stars = 5 - full_stars
+
         # Rondom selection of recent image posted
         random_product = Image.objects.order_by('?')[:3]
         
@@ -5279,6 +8396,10 @@ class viewimage(DetailView):
             'payment_status': payment_status,
             'random_product': random_product,
             'more_from_author': more_from_author,
+            'avg_rating': avg_rating,
+            'total_reviews': total_reviews,
+            'full_stars': full_stars,
+            'empty_stars': empty_stars,
         })
         return context
     
@@ -5296,6 +8417,37 @@ def viewwebsitetemplate(request, id):
         payment = Payment.objects.filter(user=request.user, template=websitetemplate).last()
         if payment and payment.payment_status == 'paid':
             is_paid = True
+      
+    # Calculate average rating and count
+    reviews = ReviewWebsitetemplate.objects.filter(template=websitetemplate)
+    avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+    total_reviews = reviews.count()
+
+    # Compute full stars and empty stars
+    full_stars = int(floor(avg_rating))
+    empty_stars = 5 - full_stars
+          
+    # Handle rating submission
+    if request.method == 'POST' and 'rating' in request.POST:
+        rating = request.POST.get('rating')
+        if rating and rating.isdigit():
+            rating = int(rating)
+            if 1 <= rating <= 5:  # Validate the rating value
+                review, created = ReviewWebsitetemplate.objects.get_or_create(
+                    user=request.user,
+                    template=websitetemplate,
+                    defaults={'rating': rating}
+                )
+                if not created:
+                    # Update the rating if the review already exists
+                    review.rating = rating
+                    review.save()
+                messages.success(request, "Your rating has been submitted.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        else:
+            messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        return redirect('viewwebsitetemplate', id=websitetemplate.id)
             
     # Retrieve at least 5 random recent templates
     recent_templates = Websitetemplate.objects.order_by('?')[:3]
@@ -5324,12 +8476,17 @@ def viewwebsitetemplate(request, id):
     # Randomly select up to 5 items from the combined list
     more_from_author = random.sample(more_from_author, min(len(more_from_author), 3))
     
+    
     context = {
         "Websitetemplateview":Websitetemplateview,
         'Websitetemplateview': websitetemplate,
         'is_paid': is_paid,
         'recent_templates': recent_templates,
         'more_from_author': more_from_author,
+        'avg_rating': avg_rating,
+        'total_reviews': total_reviews,
+        'full_stars': range(full_stars),
+        'empty_stars': range(empty_stars),
         }
     return render(request, 'web/viewwebsitetemplate.html', context)
 
@@ -5345,6 +8502,37 @@ def viewmobiletemplate(request, id):
         payment = PaymentMobiletemplate.objects.filter(user=request.user, mobiletemplate=mobiletemplate).last()
         if payment and payment.payment_status == 'paid':
             is_paid = True
+            
+    # Calculate average rating and count
+    reviews = ReviewMobiletemplate.objects.filter(template=mobiletemplate)
+    avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+    total_reviews = reviews.count()
+
+    # Compute full stars and empty stars
+    full_stars = int(floor(avg_rating))
+    empty_stars = 5 - full_stars
+          
+    # Handle rating submission
+    if request.method == 'POST' and 'rating' in request.POST:
+        rating = request.POST.get('rating')
+        if rating and rating.isdigit():
+            rating = int(rating)
+            if 1 <= rating <= 5:  # Validate the rating value
+                review, created = ReviewMobiletemplate.objects.get_or_create(
+                    user=request.user,
+                    template=mobiletemplate,
+                    defaults={'rating': rating}
+                )
+                if not created:
+                    # Update the rating if the review already exists
+                    review.rating = rating
+                    review.save()
+                messages.success(request, "Your rating has been submitted.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        else:
+            messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        return redirect('viewmobiletemplate', id=mobiletemplate.id)
             
     # Retrieve at least 5 random recent templates
     recent_templates = Mobiletemplate.objects.order_by('?')[:3]
@@ -5379,6 +8567,10 @@ def viewmobiletemplate(request, id):
         'is_paid': is_paid,
         'recent_templates': recent_templates,
         'more_from_author': more_from_author,
+        'avg_rating': avg_rating,
+        'total_reviews': total_reviews,
+        'full_stars': range(full_stars),
+        'empty_stars': range(empty_stars),
         }
     return render(request, 'web/viewmobiletemplate.html', context)
 
@@ -5394,6 +8586,37 @@ def viewdesktoptemplate(request, id):
         payment = PaymentDesktoptemplate.objects.filter(user=request.user, desktoptemplate=desktoptemplate).last()
         if payment and payment.payment_status == 'paid':
             is_paid = True
+            
+    # Calculate average rating and count
+    reviews = ReviewDesktoptemplate.objects.filter(template=desktoptemplate)
+    avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+    total_reviews = reviews.count()
+
+    # Compute full stars and empty stars
+    full_stars = int(floor(avg_rating))
+    empty_stars = 5 - full_stars
+          
+    # Handle rating submission
+    if request.method == 'POST' and 'rating' in request.POST:
+        rating = request.POST.get('rating')
+        if rating and rating.isdigit():
+            rating = int(rating)
+            if 1 <= rating <= 5:  # Validate the rating value
+                review, created = ReviewDesktoptemplate.objects.get_or_create(
+                    user=request.user,
+                    template=desktoptemplate,
+                    defaults={'rating': rating}
+                )
+                if not created:
+                    # Update the rating if the review already exists
+                    review.rating = rating
+                    review.save()
+                messages.success(request, "Your rating has been submitted.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        else:
+            messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        return redirect('viewdesktoptemplate', id=desktoptemplate.id)
             
     # Retrieve at least 5 random recent templates
     recent_templates = Desktoptemplate.objects.order_by('?')[:3]
@@ -5428,6 +8651,10 @@ def viewdesktoptemplate(request, id):
         'is_paid': is_paid,
         'recent_templates': recent_templates,
         'more_from_author': more_from_author,
+        'avg_rating': avg_rating,
+        'total_reviews': total_reviews,
+        'full_stars': range(full_stars),
+        'empty_stars': range(empty_stars),
         }
     return render(request, 'web/viewdesktoptemplate.html', context)
 
@@ -5443,6 +8670,37 @@ def viewmicrosofttemplate(request, id):
         payment = PaymentMicrosofttemplate.objects.filter(user=request.user, microsofttemplate=microsofttemplate).last()
         if payment and payment.payment_status == 'paid':
             is_paid = True
+            
+    # Calculate average rating and count
+    reviews = ReviewMicrosofttemplate.objects.filter(template=microsofttemplate)
+    avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+    total_reviews = reviews.count()
+
+    # Compute full stars and empty stars
+    full_stars = int(floor(avg_rating))
+    empty_stars = 5 - full_stars
+          
+    # Handle rating submission
+    if request.method == 'POST' and 'rating' in request.POST:
+        rating = request.POST.get('rating')
+        if rating and rating.isdigit():
+            rating = int(rating)
+            if 1 <= rating <= 5:  # Validate the rating value
+                review, created = ReviewMicrosofttemplate.objects.get_or_create(
+                    user=request.user,
+                    template=microsofttemplate,
+                    defaults={'rating': rating}
+                )
+                if not created:
+                    # Update the rating if the review already exists
+                    review.rating = rating
+                    review.save()
+                messages.success(request, "Your rating has been submitted.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        else:
+            messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        return redirect('viewmicrosofttemplate', id=microsofttemplate.id)
             
     # Retrieve at least 5 random recent templates
     recent_templates = Microsofttemplate.objects.order_by('?')[:3]
@@ -5477,6 +8735,10 @@ def viewmicrosofttemplate(request, id):
         'is_paid': is_paid,
         'recent_templates': recent_templates,
         'more_from_author': more_from_author,
+        'avg_rating': avg_rating,
+        'total_reviews': total_reviews,
+        'full_stars': range(full_stars),
+        'empty_stars': range(empty_stars),
         }
     return render(request, 'web/viewmicrosofttemplate.html', context)
 
@@ -5493,6 +8755,37 @@ def viewadobetemplate(request, id):
         payment = PaymentAdobetemplate.objects.filter(user=request.user, adobetemplate=adobetemplate).last()
         if payment and payment.payment_status == 'paid':
             is_paid = True
+            
+    # Calculate average rating and count
+    reviews = ReviewAdobetemplate.objects.filter(template=adobetemplate)
+    avg_rating = reviews.aggregate(average=Avg('rating'))['average'] or 0
+    total_reviews = reviews.count()
+
+    # Compute full stars and empty stars
+    full_stars = int(floor(avg_rating))
+    empty_stars = 5 - full_stars
+          
+    # Handle rating submission
+    if request.method == 'POST' and 'rating' in request.POST:
+        rating = request.POST.get('rating')
+        if rating and rating.isdigit():
+            rating = int(rating)
+            if 1 <= rating <= 5:  # Validate the rating value
+                review, created = ReviewAdobetemplate.objects.get_or_create(
+                    user=request.user,
+                    template=adobetemplate,
+                    defaults={'rating': rating}
+                )
+                if not created:
+                    # Update the rating if the review already exists
+                    review.rating = rating
+                    review.save()
+                messages.success(request, "Your rating has been submitted.")
+            else:
+                messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        else:
+            messages.error(request, "Invalid rating. Please select a value between 1 and 5.")
+        return redirect('viewadobetemplate', id=adobetemplate.id)
             
     # Retrieve at least 5 random recent templates
     recent_templates = Adobetemplate.objects.order_by('?')[:3]
@@ -5527,6 +8820,10 @@ def viewadobetemplate(request, id):
         'is_paid': is_paid,
         'recent_templates': recent_templates,
         'more_from_author': more_from_author,
+        'avg_rating': avg_rating,
+        'total_reviews': total_reviews,
+        'full_stars': range(full_stars),
+        'empty_stars': range(empty_stars),
         }
     return render(request, 'web/viewadobetemplate.html', context)
 
@@ -9055,6 +12352,82 @@ def search_all_product(request):
         productdesktoptemplate = Desktoptemplate.objects.all()
         productmirosofttemplate = Microsofttemplate.objects.all()
         productadobetemplate = Adobetemplate.objects.all()
+        
+    # Prepare data for each template
+    for template in productproject:
+        avg_rating = ReviewProject.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewProject.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productimage:
+        avg_rating = ReviewImage.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewImage.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productbook:
+        avg_rating = ReviewBook.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBook.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productprintable:
+        avg_rating = ReviewPrintable.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewPrintable.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmusic:
+        avg_rating = ReviewMusic.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMusic.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmultmedia:
+        avg_rating = ReviewMultimedia.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMultimedia.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productdigitalart:
+        avg_rating = ReviewDigitalArt.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDigitalArt.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productcad:
+        avg_rating = ReviewCAD.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewCAD.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productsoftware:
+        avg_rating = ReviewSoftware.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewSoftware.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productbusiness:
+        avg_rating = ReviewBusiness.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewBusiness.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productwebsitetemplate:
+        avg_rating = ReviewWebsitetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewWebsitetemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmobiletemplate:
+        avg_rating = ReviewMobiletemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMobiletemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productdesktoptemplate:
+        avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewDesktoptemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productmirosofttemplate:
+        avg_rating = ReviewMicrosofttemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewMicrosofttemplate.objects.filter(template=template).count()  # Total reviews
+        
+    for template in productadobetemplate:
+        avg_rating = ReviewAdobetemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
+        template.avg_rating = round(avg_rating, 1)  # Round to 1 decimal place
+        template.total_reviews = ReviewAdobetemplate.objects.filter(template=template).count()  # Total reviews
     
     # Create context outside the if-else
     context = {

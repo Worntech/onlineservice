@@ -125,6 +125,13 @@ class ProjectForm(ModelForm):
         model = Project
         fields = ['Title', 'Explanation', 'Type', 'Image', 'Preview_Video', 'Project', 'amount_in_USD']
         
+class ReviewProjectForm(forms.ModelForm):
+    class Meta:
+        model = ReviewProject
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }       
         
 #for comment of the project
 class CommentprojectForm(forms.ModelForm):
@@ -146,7 +153,14 @@ class ImageForm(ModelForm):
         model = Image
         fields = ['Title', 'Image', 'Image_download', 'amount_in_USD']
         
-        
+class ReviewImageForm(forms.ModelForm):
+    class Meta:
+        model = ReviewImage
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+            
 #for comment of the project
 class CommentimageForm(forms.ModelForm):
     content = forms.CharField(
@@ -166,37 +180,85 @@ class WebsitetemplateForm(ModelForm):
     class Meta:
         model = Websitetemplate
         fields = ['Title', 'Type', 'Explanation', 'Image', 'Preview_Video', 'Template', 'amount_in_USD', 'preview']
+
+class ReviewWebsitetemplateForm(forms.ModelForm):
+    class Meta:
+        model = ReviewWebsitetemplate
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
         
     #for mobile template
 class MobiletetemplateForm(ModelForm):
     class Meta:
         model = Mobiletemplate
         fields = ['Title', 'Type', 'Explanation', 'Image', 'Preview_Video', 'Template', 'amount_in_USD']
+
+class ReviewMobiletemplateForm(forms.ModelForm):
+    class Meta:
+        model = ReviewMobiletemplate
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
         
+              
     #for desktop template
 class DesktoptemplateForm(ModelForm):
     class Meta:
         model = Desktoptemplate
         fields = ['Title', 'Type', 'Explanation', 'Image', 'Preview_Video', 'Template', 'amount_in_USD']
-        
+
+class ReviewDesktoptemplateForm(forms.ModelForm):
+    class Meta:
+        model = ReviewDesktoptemplate
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+              
     #for microspft template
 class MicrosofttemplateForm(ModelForm):
     class Meta:
         model = Microsofttemplate
         fields = ['Title', 'Type', 'Explanation', 'Image', 'Preview_Video', 'Template', 'amount_in_USD']
-        
+
+class ReviewMicrosofttemplateForm(forms.ModelForm):
+    class Meta:
+        model = ReviewMicrosofttemplate
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+               
     #for adobe tempalte
 class AdobetemplateForm(ModelForm):
     class Meta:
         model = Adobetemplate
         fields = ['Title', 'Type', 'Explanation', 'Image', 'Preview_Video', 'Template', 'amount_in_USD']
-        
+
+class ReviewAdobetemplateForm(forms.ModelForm):
+    class Meta:
+        model = ReviewAdobetemplate
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }       
      
 class BookForm(ModelForm):
     class Meta:
         model = Book
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Book', 'amount_in_USD']
 
+class ReviewBookForm(forms.ModelForm):
+    class Meta:
+        model = ReviewBook
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentbookForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -216,7 +278,14 @@ class PrintableForm(ModelForm):
         model = Printable
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Product', 'amount_in_USD']
 
-
+class ReviewPrintableForm(forms.ModelForm):
+    class Meta:
+        model = ReviewPrintable
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentprintableForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -236,6 +305,14 @@ class MusicForm(ModelForm):
         model = Music
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Product', 'Preview_Audio', 'amount_in_USD']
 
+class ReviewMusicForm(forms.ModelForm):
+    class Meta:
+        model = ReviewMusic
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentmusicForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -256,6 +333,14 @@ class MultimediaForm(ModelForm):
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Preview_Video', 'Product', 'amount_in_USD']
 
 
+class ReviewMultimediaForm(forms.ModelForm):
+    class Meta:
+        model = ReviewMultimedia
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentmultimediaForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -276,6 +361,14 @@ class DigitalArtForm(ModelForm):
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Preview_Video', 'Product', 'amount_in_USD']
 
 
+class ReviewDigitalArtForm(forms.ModelForm):
+    class Meta:
+        model = ReviewDigitalArt
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentdigitalArtForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -295,6 +388,15 @@ class CADForm(ModelForm):
         model = CAD
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Preview_Video', 'Product', 'amount_in_USD']
 
+
+class ReviewCADForm(forms.ModelForm):
+    class Meta:
+        model = ReviewCAD
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentCADForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -314,6 +416,14 @@ class SoftwareForm(ModelForm):
         model = Software
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Preview_Video', 'Product', 'amount_in_USD']
 
+class ReviewSoftwareForm(forms.ModelForm):
+    class Meta:
+        model = ReviewSoftware
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentsoftwareForm(forms.ModelForm):
     content = forms.CharField(
         label=False,
@@ -332,6 +442,14 @@ class BusinessForm(ModelForm):
         model = Business
         fields = ['Title', 'Category', 'Explanation', 'Image', 'Preview_Video', 'Product', 'amount_in_USD']
 
+class ReviewBusinessForm(forms.ModelForm):
+    class Meta:
+        model = ReviewBusiness
+        fields = ['rating']
+        widgets = {
+            'rating': forms.RadioSelect(choices=[(i, f"{i} ★") for i in range(1, 6)]),
+        }
+        
 class CommentbusinessForm(forms.ModelForm):
     content = forms.CharField(
         label=False,

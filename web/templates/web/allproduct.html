@@ -47,7 +47,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewproject' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -55,20 +55,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewproject' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Project</a>
                             </span>
                         </div>
                     </div>
@@ -83,7 +121,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewimage' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -91,20 +129,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewimage' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Image</a>
                             </span>
                         </div>
                     </div>
@@ -131,16 +207,54 @@
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Book</a>
                             </span>
                         </div>
                     </div>
@@ -155,7 +269,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewprintable' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -163,20 +277,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewprintable' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Printable</a>
                             </span>
                         </div>
                     </div>
@@ -191,7 +343,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewmusic' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -199,20 +351,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewmusic' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Music</a>
                             </span>
                         </div>
                     </div>
@@ -227,7 +417,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewmultimedia' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -235,20 +425,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewmultimedia' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Multmedia</a>
                             </span>
                         </div>
                     </div>
@@ -263,7 +491,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewdigitalArt' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -271,20 +499,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewdigitalArt' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Art</a>
                             </span>
                         </div>
                     </div>
@@ -299,7 +565,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewCAD' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -307,20 +573,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewCAD' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">CAD</a>
                             </span>
                         </div>
                     </div>
@@ -335,7 +639,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewsoftware' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -343,20 +647,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewsoftware' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Software</a>
                             </span>
                         </div>
                     </div>
@@ -371,7 +713,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewbusiness' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -379,20 +721,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewbusiness' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Business</a>
                             </span>
                         </div>
                     </div>
@@ -407,7 +787,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewwebsitetemplate' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -415,20 +795,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewwebsitetemplate' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Template</a>
                             </span>
                         </div>
                     </div>
@@ -443,7 +861,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewmobiletemplate' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -451,20 +869,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewmobiletemplate' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Template</a>
                             </span>
                         </div>
                     </div>
@@ -479,7 +935,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewdesktoptemplate' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -487,20 +943,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewdesktoptemplate' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Template</a>
                             </span>
                         </div>
                     </div>
@@ -515,7 +1009,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewmicrosofttemplate' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -523,20 +1017,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewmicrosofttemplate' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Template</a>
                             </span>
                         </div>
                     </div>
@@ -551,7 +1083,7 @@
                     <!-- Start Single Course -->
                     <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                         <div class="course-image">
-                            <a href="{% url 'viewbook' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
+                            <a href="{% url 'viewadobetemplate' i.id %}"><img src=" {{i.Image.url}}" alt="#"></a>
                             {% if i.amount_in_USD == 0 %}
                             <p class="price">FREE</p>
                             {% else %}
@@ -559,20 +1091,58 @@
                             {% endif %}
                         </div>
                         <div class="content">
-                            <h3><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a></h3>
+                            <h3><a href="{% url 'viewadobetemplate' i.id %}">{{i.Title}}</a></h3>
                         </div>
                         <div class="bottom-content">
                             <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li>22 Reviews</li>
+                                <!-- Star Display -->
+                                {% if i.avg_rating >= 4.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                {% elif i.avg_rating >= 3.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 2.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 1.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% elif i.avg_rating >= 0.5 %}
+                                    <li><i class="lni lni-star-filled"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% else %}
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                    <li><i class="lni lni-star-empty"></i></li>
+                                {% endif %}
+                            
+                                <!-- Display Average Rating -->
+                                <li>{{ i.avg_rating }}</li>
+                                
+                                <!-- Display Total Reviews -->
+                                <li>{{ i.total_reviews }} Reviews</li>
                             </ul>
                             <span class="tag">
                                 <i class="lni lni-tag"></i>
-                                <a href="javascript:void(0)">video</a>
+                                <a href="javascript:void(0)">Template</a>
                             </span>
                         </div>
                     </div>

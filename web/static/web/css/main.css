@@ -8187,3 +8187,174 @@ ul.custom-flex {
 .mail-success .mail-content .button .btn.alt:hover {
     color: #fff;
 }
+
+
+/* RATING PRODUCT */
+
+
+/* Ensure the star-rating class is applied */
+
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    /* Stars go from right to left */
+    justify-content: center;
+    font-size: 2rem;
+    /* Size of the stars */
+    position: relative;
+}
+
+
+/* Completely hide radio buttons */
+
+.star-rating input[type="radio"] {
+    display: none;
+    /* Hides the default radio button */
+}
+
+
+/* Style the labels as stars */
+
+.star-rating label {
+    color: #ccc;
+    /* Default grey color for stars */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    padding: 0 5px;
+    transition: color 0.3s ease-in-out;
+    /* Smooth transition for hover and selection */
+}
+
+
+/* Highlight stars when hovered or selected */
+
+.star-rating input[type="radio"]:checked~label,
+.star-rating label:hover,
+.star-rating label:hover~label {
+    color: #f5c518;
+    /* Gold color for selected or hovered stars */
+}
+
+
+/* Fix label alignment and spacing */
+
+.star-rating label {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    line-height: 1em;
+}
+
+.star-rating input[type="radio"] {
+    display: none !important;
+}
+
+
+/* Button Base Styles */
+
+.submit-button {
+    background-color: #f5c518;
+    /* Gold color to match the stars */
+    color: #ffffff;
+    /* White text */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    /* Add spacing */
+    font-size: 1rem;
+    /* Adjust font size */
+    font-weight: bold;
+    /* Make text bold */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Smooth transitions */
+}
+
+
+/* Hover and Focus Effects */
+
+.submit-button:hover {
+    background-color: #d4a517;
+    /* Slightly darker gold on hover */
+    transform: scale(1.05);
+    /* Slight zoom effect */
+}
+
+.submit-button:active {
+    background-color: #b58515;
+    /* Even darker gold on click */
+    transform: scale(0.95);
+    /* Slight shrink effect */
+}
+
+
+/* Disabled Button */
+
+.submit-button:disabled {
+    background-color: #cccccc;
+    /* Grey for disabled state */
+    cursor: not-allowed;
+    /* Not-allowed cursor */
+    transform: none;
+    /* Remove transform for disabled */
+}
+
+.star-rating-display {
+    font-size: 1.5em;
+    color: #FFD700;
+    /* Gold color for filled stars */
+}
+
+.star {
+    color: #ccc;
+    /* Grey color for unfilled stars */
+}
+
+.star.filled {
+    color: #FFD700;
+    /* Gold color for filled stars */
+}
+
+.star-rating-display {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 1.5rem;
+}
+
+.star.full {
+    color: #FFD700;
+    /* Gold color for full stars */
+}
+
+.star.empty {
+    color: #ccc;
+    /* Gray color for empty stars */
+}
+
+
+/* CHECKING */
+
+.star-rating-display {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 1.5rem;
+}
+
+.star.full {
+    color: #FFD700;
+    /* Gold color for full stars */
+}
+
+.star.empty {
+    color: #ccc;
+    /* Gray color for empty stars */
+}

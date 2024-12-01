@@ -117,6 +117,25 @@
                                     {% endif %}
                                     {% endif %}
                                 </ul>
+
+                                <div class="ratings-section">
+                                    <h4>Ratings and Reviews</h4>
+                                    <!-- Star Display -->
+                                    <div class="star-rating-display">
+                                        <!-- Full stars -->
+                                        {% for _ in ""|center:full_stars %}
+                                            <span class="star full">★</span>
+                                        {% endfor %}
+                                        
+                                        <!-- Empty stars -->
+                                        {% for _ in ""|center:empty_stars %}
+                                            <span class="star empty">★</span>
+                                        {% endfor %}
+                                        <span class="star empty">{{ avg_rating }}</span>
+                                        <span class="total-reviews">({{ total_reviews }} reviews)</span>
+                                    </div>
+                                </div>
+                                
                                 {% if object.amount_in_USD == 0 %}
                                 <h2 class="post-title">
                                     <a href="javascript:void(0)">{{object.Title}} (Free)</a>
@@ -145,6 +164,28 @@
                                 {% endif %}
                                 
                                 <p>{{object.Explanation}}</p>
+
+                                <h5>Rate this Product:</h5>
+                                <form method="POST" id="review-form">
+                                    {% csrf_token %}
+                                    <div class="star-rating">
+                                        <input type="radio" id="star5" name="rating" value="5" />
+                                        <label for="star5" title="5 stars">★</label>
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label for="star4" title="4 stars">★</label>
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label for="star3" title="3 stars">★</label>
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label for="star2" title="2 stars">★</label>
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label for="star1" title="1 star">★</label>
+                                    </div>
+                                    <button type="submit" class="submit-button">
+                                        <i class="fas fa-paper-plane"></i> Submit Review
+                                    </button>
+                                </form>
+
+                                <br>
                                 
                                 <div class="post-tags-media">
                                     <div class="post-tags popular-tag-widget mb-xl-40">

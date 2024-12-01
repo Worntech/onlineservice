@@ -113,3 +113,20 @@ admin.site.register(MasterAmount)
 
 # NOTIFICATION
 admin.site.register(Notification)
+
+# NOTIFICATION
+admin.site.register(ReviewWebsitetemplate)
+admin.site.register(ReviewMobiletemplate)
+admin.site.register(ReviewDesktoptemplate)
+admin.site.register(ReviewMicrosofttemplate)
+admin.site.register(ReviewAdobetemplate)
+admin.site.register(ReviewBook)
+admin.site.register(ReviewPrintable)
+admin.site.register(ReviewMusic)
+admin.site.register(ReviewMultimedia)
+admin.site.register(ReviewDigitalArt)
+admin.site.register(ReviewCAD)
+admin.site.register(ReviewSoftware)
+admin.site.register(ReviewBusiness)
+admin.site.register(ReviewProject)
+admin.site.register(ReviewImage)
