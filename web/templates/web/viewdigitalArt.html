@@ -290,6 +290,182 @@
                         </div>
                         <!--/ End Single Widget -->
 
+                        <!-- Single Widget -->
+                        <div class="widget popular-feeds">
+                            <h5 class="widget-title">More From Author</h5>
+                            <div class="popular-feed-loop">
+                                {% for i in more_from_author %}
+                                {% if i.get_model_name == 'Websitetemplate' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewwebsitetemplate' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewwebsitetemplate' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Project' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewproject' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewproject' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Image' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewimage' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewimage' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Mobiletemplate' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewmobiletemplate' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewmobiletemplate' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Desktoptemplate' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewdesktoptemplate' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewdesktoptemplate' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Microsofttemplate' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewmicrosofttemplate' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewmicrosofttemplate' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Adobetemplate' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewadobetemplate' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewadobetemplate' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Book' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewbook' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewbook' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Printable' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewprintable' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewprintable' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Music' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewmusic' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewmusic' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Multimedia' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewmultimedia' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewmultimedia' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'DigitalArt' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewdigitalArt' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewdigitalArt' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'CAD' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewCAD' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewCAD' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Software' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewsoftware' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewsoftware' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% elif i.get_model_name == 'Business' %}
+                                <div class="single-popular-feed">
+                                    <div class="feed-img">
+                                        <a href="{% url 'viewbusiness' i.id %}"><img src="{{i.Image.url}}" alt="#"></a>
+                                    </div>
+                                    <div class="feed-desc">
+                                        <h6 class="post-title"><a href="{% url 'viewbusiness' i.id %}">{{i.Title}}</a>
+                                        </h6>
+                                        <span class="time"><i class="lni lni-calendar"></i>{{i.date_created}}</span>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!--/ End Single Widget -->
+
                         {% comment %} <!-- Single Widget -->
                         <div class="widget categories-widget">
                             <h5 class="widget-title">Categories</h5>

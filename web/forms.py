@@ -582,13 +582,19 @@ class MyamountForm(ModelForm):
 class WithdrawForm(ModelForm):
     class Meta:
         model = Withdraw
-        fields = ['Card_Number', 'Card_Name', 'Amount_in_USD', 'Phone_Number', 'Country']
+        fields = ['Amount_in_USD']
         
 # MASTER WITHDRAW
 class MasterWithdrawForm(ModelForm):
     class Meta:
         model = MasterWithdraw
         fields = ['Card_Number', 'Card_Name', 'Amount_in_USD', 'Phone_Number', 'Country']
+        
+# MASTER WITHDRAW
+class CardForm(ModelForm):
+    class Meta:
+        model = Card
+        fields = ['Card_Number', 'Card_Name', 'Phone_Number', 'Card_Type', 'Country']
 
 
 # MY MASTER AMOUNT

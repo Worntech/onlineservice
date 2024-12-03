@@ -29,6 +29,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'dash/css/print.css' %}">
     <!--! END: Custom CSS-->
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
     <style>
         .scroll-container {
             width: 300px;         /* Set width of the scroll container */
@@ -130,6 +133,7 @@
                             <li class="nxl-item"><a class="nxl-link" href="{% url 'masterpayment' %}">Master Money Withdrawed</a></li>
                             {% endif %}
                             <li class="nxl-item"><a class="nxl-link" href="{% url 'withdraw' %}">Withdraw Money</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{% url 'mycard' %}">Card Infomation</a></li>
                             
                         </ul>
                     </li>
@@ -2384,18 +2388,18 @@
                                 <span>Activity Feed</span>
                             </a> {% endcomment %}
 
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="{% url 'mycard' %}" class="dropdown-item">
                                 <i class="feather-dollar-sign"></i>
                                 <span>Billing Details</span>
                             </a>
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            {% comment %} <a href="javascript:void(0);" class="dropdown-item">
                                 <i class="feather-bell"></i>
                                 <span>Notifications</span>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            </a> {% endcomment %}
+                            {% comment %} <a href="javascript:void(0);" class="dropdown-item">
                                 <i class="feather-settings"></i>
                                 <span>Account Settings</span>
-                            </a>
+                            </a> {% endcomment %}
                             <div class="dropdown-divider"></div>
                             <a href="{% url 'logout' %}" class="dropdown-item">
                                 <i class="feather-log-out"></i>

@@ -359,7 +359,6 @@ urlpatterns = [
     path("horror_and_thriller_effects/",views.horror_and_thriller_effects,name = "horror_and_thriller_effects"),
     path("drum_loops/",views.drum_loops,name = "drum_loops"),
     path("melodic_loops/",views.melodic_loops,name = "melodic_loops"),
-    #  ABOVE UPDATE THE NO DATA PAGE
     path("vocal_samples/",views.vocal_samples,name = "vocal_samples"),
     path("synth_and_bass_loops/",views.synth_and_bass_loops,name = "synth_and_bass_loops"),
     path("background_music_for_videos/",views.background_music_for_videos,name = "background_music_for_videos"),
@@ -740,6 +739,8 @@ urlpatterns = [
     path('updatemicrosofttemplate/<int:id>/', views.updatemicrosofttemplate, name = "updatemicrosofttemplate"),
     path('updateadobetemplate/<int:id>/', views.updateadobetemplate, name = "updateadobetemplate"),
     
+    path('updatecard/<int:id>/', views.updatecard, name = "updatecard"),
+    
     # FOR PAYMENT
     path('pesapal/transaction/completed/', views.payment_completed, name='payment_completed'),
     
@@ -789,6 +790,7 @@ urlpatterns = [
     
     # WITHDRAW
     path('withdraw', views.withdraw, name = "withdraw"),
+    path('mycard', views.mycard, name = "mycard"),
     path('master_withdraw', views.master_withdraw, name = "master_withdraw"),
     
     path('mypayment', views.mypayment, name = "mypayment"),

@@ -259,7 +259,7 @@ def contactpost(request):
             contactpost.save()
 
             subject = "WORNTECH ONLINE SERVICES"
-            message = f"Hellow {request.user.first_name} {request.user.last_name} Thanks for contacting us, worntech online service is working for your message, opinion and question, get read we are here for your, for moer infomation contact via whatsapp +255 710 891 288"
+            message = f"Hellow {request.user.first_name} {request.user.last_name} Thanks for contacting us, worntech online service is working for your message, opinion and question, get read we are here for your, for more infomation contact via whatsapp +255 710 891 288"
             #from_email = settings.EMAIL_HOST_USER
             from_email = 'worntechservices@gmail.com'
             recipient_list = [request.user.email]
@@ -9269,6 +9269,18 @@ def updateimage(request, id):
     context = {"image":image}
     return render(request, 'web/updateimage.html', context)
 
+def updatecard(request, id):
+    ca = Card.objects.get(id=id)
+    card = CardForm(instance=ca)
+    if request.method == "POST":
+        card = CardForm(request.POST, files=request.FILES, instance=ca)
+        if card.is_valid():
+            card.save()
+            messages.info(request, 'Updated succesefull.')
+            return redirect('mycard')
+    context = {"card":card}
+    return render(request, 'web/updatecard.html', context)
+
 
 # views for updating template
 @login_required(login_url='signin')
@@ -11714,6 +11726,8 @@ def withdraw(request):
     notification = Notification.objects.filter(user=request.user).order_by('-id')
     notificationcount = Notification.objects.filter(user=request.user, viewed=False).count()
     
+    cardinfo = Card.objects.filter(user=request.user).first()
+    
     # Check if the user has a Myamount record; if not, create a default one
     my_amount_record = Myamount.objects.filter(user=request.user).first()
     
@@ -11739,6 +11753,9 @@ def withdraw(request):
                 messages.info(request, 'Amount to withdraw is greater than your balance.')
             elif withdraw_instance.Amount_in_USD < 20:
                 messages.info(request, 'Sorry! Minimum Amount To Withdraw is $20.')
+            elif not cardinfo:
+                messages.info(request, 'Please add your card details before making a withdrawal.')
+                return redirect('mycard')
             else:
                 # Update Myamount record with new values
                 twent = withdraw_instance.Amount_in_USD * Decimal('0.25')
@@ -11751,6 +11768,13 @@ def withdraw(request):
                 # Save the withdraw record
                 withdraw_instance.user = request.user
                 withdraw_instance.Email = request.user.email
+                
+                withdraw_instance.Card_Number = cardinfo.Card_Number
+                withdraw_instance.Card_Name = cardinfo.Card_Name
+                withdraw_instance.Phone_Number = cardinfo.Phone_Number
+                withdraw_instance.Country = cardinfo.Country
+                withdraw_instance.Card_Type = cardinfo.Card_Type
+                
                 withdraw_instance.Status = 'Processing'
                 withdraw_instance.save()
                 
@@ -11770,12 +11794,73 @@ def withdraw(request):
 
     context = {
         "withdraw": withdraw,
+        "cardinfo": cardinfo,
         'my_amount_record': my_amount_record,
         "notification": notification,
         'notificationcount': notificationcount,
     }
     
     return render(request, 'web/withdraw.html', context)
+
+@login_required(login_url='signin')
+def mycard(request):
+    # Order the notifications by the most recent ones first
+    notification = Notification.objects.filter(user=request.user).order_by('-id')
+    notificationcount = Notification.objects.filter(user=request.user, viewed=False).count()
+    cardinfo = Card.objects.filter(user=request.user)
+        
+    mycard = CardForm()
+
+    if request.method == "POST":
+        mycard = CardForm(request.POST, files=request.FILES)
+
+        if mycard.is_valid():
+            mycard_instance = mycard.save(commit=False)
+
+            # Add card information
+            mycard_instance.user = request.user
+            mycard_instance.First_Name = request.user.first_name
+            mycard_instance.Last_Name = request.user.last_name
+            mycard_instance.Email = request.user.email
+            mycard.save()
+                
+            fname = request.user.first_name
+            lname = request.user.last_name
+            email = request.user.email
+                
+            subject = "WORNTECH ONLINE SERVICES"
+            message = f"Hellow {fname} {lname} You have added {mycard_instance.Card_Number} in Worntech online services, Thanks, now you can cashout using this card, For any isue contact us, contact +255 710 891 288"
+            #from_email = settings.EMAIL_HOST_USER
+            from_email = 'worntechservices@gmail.com'
+            recipient_list = [email]
+            send_mail(subject, message, from_email, recipient_list, fail_silently=True)
+            messages.info(request, 'Card Added Successfully.')
+            return redirect('mycard')
+
+    context = {
+        "mycard": mycard,
+        "cardinfo": cardinfo,
+        "notification": notification,
+        'notificationcount': notificationcount,
+    }
+    
+    return render(request, 'web/mycard.html', context)
+
+@login_required(login_url='signin')
+def cardinfo(request):
+    
+    # Order the notifications by the most recent ones first
+    notification = Notification.objects.filter(user=request.user).order_by('-id')
+    notificationcount = Notification.objects.filter(user=request.user, viewed=False).count()
+    
+    cardinfo = Card.objects.all()
+    context = {
+        'cardinfo': cardinfo,
+        
+        'notification': notification,
+        'notificationcount': notificationcount,
+    }
+    return render(request, 'web/cardinfo.html', context)
 
 @login_required(login_url='signin')
 def master_withdraw(request):

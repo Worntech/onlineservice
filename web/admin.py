@@ -111,6 +111,9 @@ admin.site.register(MasterWithdraw)
 # MASTER AMOUNT
 admin.site.register(MasterAmount)
 
+# CARD
+admin.site.register(Card)
+
 # NOTIFICATION
 admin.site.register(Notification)
 
