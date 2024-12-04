@@ -125,14 +125,14 @@
                             <span class="nxl-mtext">Payment</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{% url 'mypayment' %}">My Withdraw</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{% url 'mypayment' %}">My Cashout</a></li>
                             {% if user.is_staff  and user.is_admin %}
-                            <li class="nxl-item"><a class="nxl-link" href="{% url 'allpayment' %}">User Withdraw</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{% url 'allpayment' %}">User Cashout</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{% url 'useramount' %}">User Amount</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{% url 'master_withdraw' %}">Master Withdraw</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{% url 'masterpayment' %}">Master Money Withdrawed</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{% url 'master_withdraw' %}">Master Cashout</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{% url 'masterpayment' %}">Master Cashed Out</a></li>
                             {% endif %}
-                            <li class="nxl-item"><a class="nxl-link" href="{% url 'withdraw' %}">Withdraw Money</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{% url 'withdraw' %}">Cashout</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{% url 'mycard' %}">Card Infomation</a></li>
                             
                         </ul>
