@@ -7,7 +7,6 @@ import requests
 from requests.auth import AuthBase
 from requests_oauthlib import OAuth1, OAuth1
 
-
 from django.apps import apps
 from django.contrib.sites.models import Site
 
