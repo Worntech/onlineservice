@@ -14,6 +14,25 @@ from pathlib import Path
 import os
 import sys
 
+
+
+
+
+import smtplib
+
+# Monkey patch for starttls to ignore unsupported keyword arguments
+_original_starttls = smtplib.SMTP.starttls
+
+def _patched_starttls(self, *args, **kwargs):
+    if 'keyfile' in kwargs:
+        del kwargs['keyfile']
+    if 'certfile' in kwargs:
+        del kwargs['certfile']
+    return _original_starttls(self, *args, **kwargs)
+
+smtplib.SMTP.starttls = _patched_starttls
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
