@@ -46,7 +46,7 @@ SECRET_KEY = 'django-insecure-7wkdxajm*d+(8=k=4m=q57@k7+c@_28ov*l@hu!j@pafe_%mn5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['worntechonline.shop', 'www.worntechonline.shop', '64.226.77.59']
 
 
 # Application definition
