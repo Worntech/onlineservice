@@ -887,7 +887,6 @@ ol {
 /* Bread Crumbs */
 
 .breadcrumbs {
-    background-image: url("../images/breadcrumb-bg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2039,7 +2038,6 @@ ol {
 }
 
 .hero-area.style2 {
-    background-image: url(../images/online-course.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left;
@@ -3928,7 +3926,6 @@ ol {
 
 .our-achievement {
     background-color: #283290;
-    background-image: url("../images/hero/hero1-pattern.png");
 }
 
 .our-achievement .single-achievement {
@@ -3954,7 +3951,6 @@ ol {
 ========================================*/
 
 .our-achievement {
-    background-image: url(../images/achievement-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -4015,7 +4011,6 @@ ol {
 ========================================*/
 
 .call-action {
-    background-image: url("../images/call-bg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
