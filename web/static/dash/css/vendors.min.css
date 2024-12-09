@@ -9067,6 +9067,15 @@ screen and (-ms-high-contrast:active) {
     content: "\f83e"
 }
 
+@font-face {
+    font-family: feather;
+    src: url(../fonts/feather.eot);
+    src: url(../fonts/feather.eot#iefix) format("embedded-opentype"), url(../fonts/feather.ttf) format("truetype"), url(../fonts/feather.woff) format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block
+}
+
 i {
     font-size: 16px;
     font-family: feather;
