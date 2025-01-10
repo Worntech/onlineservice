@@ -42,7 +42,7 @@ SECRET_KEY = 'django-insecure-7wkdxajm*d+(8=k=4m=q57@k7+c@_28ov*l@hu!j@pafe_%mn5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['worntechonline.shop', 'www.worntechonline.shop', '64.226.77.59']
+ALLOWED_HOSTS = ['*', 'worntechonline.shop', 'www.worntechonline.shop', '64.226.77.59']
 
 
 # Application definition
@@ -53,10 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     "django.contrib.sites",
-<<<<<<< HEAD
-=======
     'django.contrib.sitemaps',
->>>>>>> 0298e8f (new commit)
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web',
@@ -102,8 +99,6 @@ TEMPLATES = [
     },
 ]
 
-<<<<<<< HEAD
-=======
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -126,7 +121,6 @@ LOGGING = {
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)
 
->>>>>>> 0298e8f (new commit)
 WSGI_APPLICATION = 'website.wsgi.application'
 AUTH_USER_MODEL="web.MyUser"
 
@@ -180,12 +174,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "static"
 MEDIA_URL = "/media/"
-<<<<<<< HEAD
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-=======
+
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_ROOT = '/var/www/onlineservice/media/'
->>>>>>> 0298e8f (new commit)
+
 
 #sending email in django
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -208,7 +201,7 @@ PESAPAL_ITEM_DESCRIPTION = True
 PESAPAL_TRANSACTION_MODEL = "django_pesapal.Transaction"
 PESAPAL_CONSUMER_KEY = "Z1j+oVmK9LCODN/XrtckXf/lrBFgolr1"
 PESAPAL_CONSUMER_SECRET = "ucOH6xbNhRfpXLPcYgHGvl5OX2Y="
-<<<<<<< HEAD
+
 # Override pesapal keys
 
 # try:
@@ -221,10 +214,9 @@ PESAPAL_CONSUMER_SECRET = "ucOH6xbNhRfpXLPcYgHGvl5OX2Y="
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-=======
+
 # PESAPAL INTERGRATION END
 
->>>>>>> 0298e8f (new commit)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 

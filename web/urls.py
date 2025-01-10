@@ -10,12 +10,9 @@ from web.views import PaymentViewWebsitetemplate, PaymentViewMobiletemplate, Pay
 
 from .views import delete_viewed_notifications
 
-<<<<<<< HEAD
-=======
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import sitemaps
 
->>>>>>> 0298e8f (new commit)
 from .views import (
     CustomPasswordResetView, CustomPasswordResetDoneView,
     CustomPasswordResetConfirmView, CustomPasswordResetCompleteView
@@ -830,12 +827,8 @@ urlpatterns = [
     # FOR SUBSCRIPTION
     path('subscription/', views.subscription, name='subscription'),
     path('successsubscription/', views.successsubscription, name='successsubscription'),
-<<<<<<< HEAD
-=======
     
     # URL FOR SITEMAP
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
->>>>>>> 0298e8f (new commit)
-
 ]
 

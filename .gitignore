@@ -3,11 +3,7 @@
 
 # Ignore SQLite database files (if applicable)
 *.sqlite3
-<<<<<<< HEAD
-*.db
-=======
 *.db
 
 # Ignore files in the media/home directory
 media/home/
->>>>>>> 0298e8f (new commit)
