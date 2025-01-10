@@ -1397,7 +1397,11 @@ def kivytemplate(request):
 
 # @login_required(login_url='signin')
 def pyqttemplate(request):
+<<<<<<< HEAD
     
+=======
+    desktoptemplate = Desktoptemplate.objects.order_by('?')
+>>>>>>> 0298e8f (new commit)
     # Prepare data for each template
     for template in desktoptemplate:
         avg_rating = ReviewDesktoptemplate.objects.filter(template=template).aggregate(Avg('rating'))['rating__avg'] or 0
@@ -11984,11 +11988,19 @@ def update_status(request, id, status):
         # Create a notification for the user
         message = ""
         if status == 'Completed':
+<<<<<<< HEAD
             message = f"Confirmed you have received ${mypaymentview.Amount_in_USD} in card number {mypaymentview.Card_Number}, if there is any problem please contact us through whatsapp number +255 624089128, thank you for chosing worntech to sell your product."
         elif status == 'Processing':
             message = f"Withdraw of ${mypaymentview.Amount_in_USD} in card number {mypaymentview.Card_Number} is in process plese wait for the confirmation, if there is any problem please contact us through whatsapp number +255 624089128, thank you for chosing worntech to sell your product."
         elif status == 'Declined':
             message = f"Withdraw of ${mypaymentview.Amount_in_USD} in card number {mypaymentview.Card_Number} is declained, if there is any problem please contact us through whatsapp number +255 624089128, thank you for chosing worntech to sell your product."
+=======
+            message = f"Confirmed you have received ${mypaymentview.Amount_in_USD} in card number {mypaymentview.Card_Number}, if there is any problem please contact us through whatsapp number +255 710891288, thank you for chosing worntech to sell your product."
+        elif status == 'Processing':
+            message = f"Withdraw of ${mypaymentview.Amount_in_USD} in card number {mypaymentview.Card_Number} is in process plese wait for the confirmation, if there is any problem please contact us through whatsapp number +255 710891288, thank you for chosing worntech to sell your product."
+        elif status == 'Declined':
+            message = f"Withdraw of ${mypaymentview.Amount_in_USD} in card number {mypaymentview.Card_Number} is declained, if there is any problem please contact us through whatsapp number +255 710891288, thank you for chosing worntech to sell your product."
+>>>>>>> 0298e8f (new commit)
 
         # Assuming the user is the one making the request
         Notification.objects.create(

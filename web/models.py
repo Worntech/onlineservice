@@ -11,6 +11,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
+<<<<<<< HEAD
+=======
+from django.core.exceptions import ValidationError
+>>>>>>> 0298e8f (new commit)
 
 
 # user table--------------------------------------------------------------------
@@ -89,6 +93,14 @@ class MyUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+<<<<<<< HEAD
+=======
+def validate_file_size(value):
+    limit = 1024 * 1024 * 1024  # 1024 MB in bytes
+    if value.size > limit:
+        raise ValidationError(f"The maximum file size allowed is 300MB. Your file is {value.size / (1024 * 1024):.2f}MB.")
+    
+>>>>>>> 0298e8f (new commit)
 class Contact(models.Model):
     Full_Name = models.CharField(max_length=100, null=True)
     Subject = models.CharField(max_length=100, null=True)
@@ -274,9 +286,15 @@ class Project(models.Model):
     Title = models.CharField(max_length=700)
     Explanation = models.CharField(max_length=500)
     Type = models.CharField(max_length=200, null=True, choices=type)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Project = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Project = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -313,8 +331,13 @@ class Commentproject(models.Model):
 class Image(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     Title = models.CharField(max_length=700)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Image_download = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Image_download = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -393,8 +416,11 @@ class Book(models.Model):
             ('Investment strategies', 'Investment strategies'),
             ('Retirement planning', 'Retirement planning'),
             ('Budgeting tips', 'Budgeting tips'),
+<<<<<<< HEAD
             ('Religious texts', 'Religious texts'),
             ('Spiritual growth guides', 'Spiritual growth guides'),
+=======
+>>>>>>> 0298e8f (new commit)
             ('Meditation and mindfulness books', 'Meditation and mindfulness books'),
             ('Philosophy and life purpose e-books', 'Philosophy and life purpose e-books'),
             ('Time management and productivity', 'Time management and productivity'),
@@ -412,8 +438,13 @@ class Book(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Book = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Book = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -461,8 +492,13 @@ class Printable(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -527,9 +563,15 @@ class Music(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Audio = models.FileField(upload_to="home/")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Audio = models.FileField(upload_to="home/", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -628,9 +670,15 @@ class Multimedia(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -743,9 +791,15 @@ class DigitalArt(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -863,9 +917,15 @@ class CAD(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -915,9 +975,15 @@ class Software(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -967,9 +1033,15 @@ class Business(models.Model):
     Title = models.CharField(max_length=700)
     Category = models.CharField(max_length=200, null=True, choices=category)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Product = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Product = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -1023,9 +1095,15 @@ class Websitetemplate(models.Model):
     Title = models.CharField(max_length=700)
     Type = models.CharField(max_length=200, null=True, choices=template)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Template = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Template = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
@@ -1084,9 +1162,15 @@ class Mobiletemplate(models.Model):
     Title = models.CharField(max_length=700)
     Type  = models.CharField(max_length=200, null=True, choices=template)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Template = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Template = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
@@ -1133,9 +1217,15 @@ class Desktoptemplate(models.Model):
     Title = models.CharField(max_length=700)
     Type  = models.CharField(max_length=200, null=True, choices=template)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Template = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Template = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
@@ -1176,9 +1266,15 @@ class Microsofttemplate(models.Model):
     Title = models.CharField(max_length=700)
     Type  = models.CharField(max_length=200, null=True, choices=template)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Template = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Template = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
@@ -1242,9 +1338,15 @@ class Adobetemplate(models.Model):
     Title = models.CharField(max_length=700)
     Type  = models.CharField(max_length=200, null=True, choices=template)
     Explanation = models.CharField(max_length=500)
+<<<<<<< HEAD
     Image =models.ImageField(upload_to="home/")
     Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional")
     Template = models.FileField(upload_to="home/")
+=======
+    Image =models.ImageField(upload_to="home/", validators=[validate_file_size])
+    Preview_Video = models.FileField(upload_to="home/", blank=True, null=True, help_text="Optional", validators=[validate_file_size])
+    Template = models.FileField(upload_to="home/", validators=[validate_file_size])
+>>>>>>> 0298e8f (new commit)
     amount_in_USD = models.DecimalField(max_digits=10, decimal_places=2)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
